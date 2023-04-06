@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/dao/AddAcount.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/dao/InStockDao.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/dao/LoginDao.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/dao/OutStockDao.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/dao/StaffStockDao.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/dao/SupManDao.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/manage/item/AddStaffAccout.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/manage/panl/InStockPan.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/manage/panl/OutStockPan.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/manage/panl/ShowInOutStock.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/manage/panl/SupplierPan.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/sta/InOutTimeSeriesChart2(1).java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/staff/panl/InStockPan.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/staff/panl/OutStockPan.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/style/Style.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/tool/Tool.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/until/DBUtil.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/windows/ChangOwnMeg.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/windows/DellStaffWindows.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/windows/ForGetPasssWord.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/windows/Login.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/windows/MangePeopleWindows.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/windows/StaiffWindows.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/StockHH/src/com/windows/StoreSystem.java" charset="GB2312" />
+  </component>
+</project>
