@@ -18,7 +18,7 @@ public class StaffStockDao {
 	public static Connection con=DBUtil.conn;
 	//获取订单的时间 
 	//获取系统的时间 
-	//进行对比 如果超过3分钟则不允许操作   删除和更改都需要  在3分钟之呢
+	//进行对比 如果超过3分钟则不允许操作   删除和更改都需要  在3分钟之内
 	
 	public static int showTime(String num) {
 		
@@ -41,7 +41,7 @@ public class StaffStockDao {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String ac = df.format(day);
 				Long between_dayInteger = between_days(t, df.format(day));
-				if(between_dayInteger>3) {
+				if(between_dayInteger>3) { //是否超过三分钟
 					return 0;
 				}else {
 					return 1;

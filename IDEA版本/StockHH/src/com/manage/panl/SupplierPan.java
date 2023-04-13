@@ -42,10 +42,10 @@ public class SupplierPan  extends JPanel{
 
 		this.add(jpan1);
 		
-		JLabel jl1=new JLabel("供应商");
+		JLabel jl1=new JLabel("Supplier");
 		jt1=new JTextField(15);
-		JButton jb1=new JButton("添加供应商");
-		JButton jb5=new JButton("删除供应商");
+		JButton jb1=new JButton("Add");
+		JButton jb5=new JButton("Delete");
 		
 	
 		
@@ -58,7 +58,7 @@ public class SupplierPan  extends JPanel{
 		
 		
 		//一个标签
-		JLabel JL1=new JLabel("供应商");
+		JLabel JL1=new JLabel("Supplier");
 		jpan1.add(JL1);
 
 		
@@ -66,19 +66,19 @@ public class SupplierPan  extends JPanel{
 		
 		
 		JComboBox cmbSupName = new JComboBox();    //创建JComboBox
-		cmbSupName.addItem("--请选择供应商--");
+		cmbSupName.addItem("--Supplier--");
 		jpan1.add(cmbSupName);
 		
 		
-		JLabel JL2=new JLabel("商品名称");
+		JLabel JL2=new JLabel("Stock Name");
 		jpan1.add(JL2);
 		
 		
 		JComboBox cmbStockName = new JComboBox();    //创建JComboBox
-		cmbStockName.addItem("--请选择商品--");
+		cmbStockName.addItem("--Stock Name--");
 		jpan1.add(cmbStockName);
 		
-		JButton jb=new JButton("删除旗下子产品");
+		JButton jb=new JButton("DeleteAll");
 		jpan1.add(jb);
 		
 		
@@ -117,9 +117,9 @@ public class SupplierPan  extends JPanel{
 				//满足条件删除
 				
 				if(cmbSupName.getSelectedIndex()==0) {
-					JOptionPane.showMessageDialog(null, "请选择供应商", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
 				}else if (cmbStockName.getSelectedIndex()==0) {
-					JOptionPane.showMessageDialog(null, "请选择子产品", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a product", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					
 					String sup=(String )cmbSupName.getSelectedItem();
@@ -127,14 +127,14 @@ public class SupplierPan  extends JPanel{
 					
 					int a=SupManDao.delSunStock(sup, sun);
 					if(a==1) {
-						JOptionPane.showMessageDialog(null, "删除成功", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Delete successfully", "Message",JOptionPane.WARNING_MESSAGE);
 						SupManDao.readSun(cmbStockName, (String )cmbSupName.getSelectedItem());
 					}
 					if(a==0) {
-						JOptionPane.showMessageDialog(null, "删除失败", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Delete failed", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==3) {
-						JOptionPane.showMessageDialog(null, "删除报错", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Error", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					
 					
@@ -162,13 +162,13 @@ public class SupplierPan  extends JPanel{
 		jpan2.setBounds(0, 110, WIDTH-20,410);
 		this.add(jpan2);
 		
-		JLabel jl2=new JLabel("供应商");
+		JLabel jl2=new JLabel("Supplier");
 		cmb1=new JComboBox();
-		cmb1.addItem("--请选择供应商--");
-		JButton jb2 =new JButton("添加旗下子产品");
+		cmb1.addItem("--Supplier--");
+		JButton jb2 =new JButton("Adding its sub-products");
 	
-		JButton jb3 =new JButton("保存数据");
-		JButton jb4=new JButton("重置");
+		JButton jb3 =new JButton("Save");
+		JButton jb4=new JButton("Reset");
 		
 
 		
@@ -191,7 +191,7 @@ public class SupplierPan  extends JPanel{
 	
 		jp3.setPreferredSize(new Dimension(200, 350));//必须再流布局中使用
 		JTextField A=new JTextField(12);
-		JLabel B=new JLabel("产品名称");
+		JLabel B=new JLabel("Stock Name");
 		A.setName("sun");
 		jp3.add(B);
 		jp3.add(A);
@@ -200,7 +200,7 @@ public class SupplierPan  extends JPanel{
 		
 		jpan2.setBorder(BorderFactory.createTitledBorder(""));
 		jpan1.setBorder(BorderFactory.createTitledBorder(""));
-		jp3.setBorder(BorderFactory.createTitledBorder("添加产品"));
+		jp3.setBorder(BorderFactory.createTitledBorder("Add Products"));
 		
 		jb2.addActionListener(new ActionListener() {
 
@@ -210,7 +210,7 @@ public class SupplierPan  extends JPanel{
 			
 				if(num<5) {
 					JTextField A=new JTextField(12);
-					JLabel B=new JLabel("产品名称");
+					JLabel B=new JLabel("Stock Name");
 					A.setName("sun");
 					
 					jp3.add(B);
@@ -218,7 +218,7 @@ public class SupplierPan  extends JPanel{
 					myUpdateUI();
 					num++;
 				}else {
-					JOptionPane.showMessageDialog(null, "最多只能添加5个", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Add a maximum of 5", "Message",JOptionPane.WARNING_MESSAGE);
 				}
 			}
 			
@@ -237,21 +237,21 @@ public class SupplierPan  extends JPanel{
 				
 				if(jt1.getText().equals("")) {
 					
-					JOptionPane.showMessageDialog(null, "供应商不能为空", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Supplier cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					int star=SupManDao.wiretSup(jt1.getText());
 					if(star==0) {
-						JOptionPane.showMessageDialog(null, "供应商添加失败", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Supplier addition failure", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(star==1) {
-						JOptionPane.showMessageDialog(null, "供应商添加成功", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Supplier added successfully", "Message",JOptionPane.WARNING_MESSAGE);
 						SupManDao.readSup(cmb1);
 						//刷新下拉框
 						SupManDao.readSup(cmbSupName);
 						
 					}
 					if(star==3) {
-						JOptionPane.showMessageDialog(null, "供应商名字重复，请重写输入", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Supplier name duplicate, please rewrite input", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				
@@ -271,21 +271,21 @@ public class SupplierPan  extends JPanel{
 				
 				if(jt1.getText().equals("")) {
 					
-					JOptionPane.showMessageDialog(null, "供应商不能为空", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Supplier cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					int star=SupManDao.dellSup(jt1.getText());
 					if(star==0) {
-						JOptionPane.showMessageDialog(null, "删除供应商添加失败请检查名字", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Delete supplier add failed please check name", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(star==1) {
-						JOptionPane.showMessageDialog(null, "供应商删除成功", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Supplier deletion success", "Message",JOptionPane.WARNING_MESSAGE);
 						SupManDao.readSup(cmb1);
 						SupManDao.readSup(cmbSupName);
 						//刷新下拉框
 						
 					}
 					if(star==3) {
-						JOptionPane.showMessageDialog(null, "报错：请检查输入内容", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Error: Please check the input content", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				
@@ -317,7 +317,7 @@ public class SupplierPan  extends JPanel{
 						String text=TEMP1.getText();//把文本框的内容存过来
 			
 						if(cmb1.getSelectedIndex()==0) {
-							JOptionPane.showMessageDialog(null, "请选择供应商", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
 						}else {
 							//获取项目名字
 							String sup=(String) cmb1.getSelectedItem();
@@ -331,12 +331,12 @@ public class SupplierPan  extends JPanel{
 				}
 				//后面高级的时候，让他自动报是那行有问题 
 				if(a==3) {
-					JOptionPane.showMessageDialog(null, "请检查子产品名字是否重复", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please check for duplicate sub-product names", "Message",JOptionPane.WARNING_MESSAGE);
 				}
 				else if(a==0) {
-					JOptionPane.showMessageDialog(null, "添加失败", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Add Failed", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
-					JOptionPane.showMessageDialog(null, "添加产品成功", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Add successfully", "Message",JOptionPane.WARNING_MESSAGE);
 					SupManDao.readSun(cmbStockName, (String )cmbSupName.getSelectedItem());
 				}
 			}
@@ -351,7 +351,7 @@ public class SupplierPan  extends JPanel{
 				// TODO Auto-generated method stub
 				jp3.removeAll();
 				JTextField A=new JTextField(12);
-				JLabel B=new JLabel("产品名称");
+				JLabel B=new JLabel("Stock Name");
 				A.setName("sun");
 				jp3.add(B);
 				jp3.add(A);

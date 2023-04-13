@@ -29,7 +29,7 @@ public class InStockPan extends JPanel {
 
 	
 	//表格的数据
-	Object columns[] ={"订单编号","供应商","商品名字","入库时间","商品数量","商品价格","商品总库存"};//标题信息
+	Object columns[] ={"ID","Supplier","Stock Name","Storage time","Num","Price","Total Num"};//标题信息
 	JTable tableL=null;//表格
 	JScrollPane jscrollpane;//滚动条
 	public static DefaultTableModel  model;//定义表格的控制权
@@ -67,19 +67,19 @@ public class InStockPan extends JPanel {
 		this.add(jpan1);
 	
 		// 定义5个按钮 
-		JButton JB1=new JButton("保存入库");
+		JButton JB1=new JButton("Save");
 		jpan1.add(JB1);
 		
 		// 定义5个按钮 
-		JButton JB2=new JButton("删除入库");
+		JButton JB2=new JButton("Delete");
 		jpan1.add(JB2);
 		
 		// 定义5个按钮 
-		JButton JB3=new JButton("更改入库");
+		JButton JB3=new JButton("Change");
 		jpan1.add(JB3);
 		
 		// 定义5个按钮 
-		JButton JB4=new JButton("查找入库");
+		JButton JB4=new JButton("Find");
 		jpan1.add(JB4);
 		
 
@@ -91,17 +91,17 @@ public class InStockPan extends JPanel {
 		jpan2.setBounds(0, 60, WIDTH-20, 100);
 	
 		
-		JLabel JL1=new JLabel("商品供应商");
+		JLabel JL1=new JLabel("Supplier");
 		jpan2.add(JL1);
 
 		
 		
 		cmbSupName=new JComboBox();    //创建JComboBox
-		cmbSupName.addItem("--请选择供应商--");
+		cmbSupName.addItem("--Supplier--");
 		jpan2.add(cmbSupName);
 		
 		
-		JLabel JL2=new JLabel("商品名称");
+		JLabel JL2=new JLabel("Stock Name");
 		jpan2.add(JL2);
 		//_____________________________________________
 	
@@ -111,12 +111,12 @@ public class InStockPan extends JPanel {
 	
 		
 		cmbStockName=new JComboBox();    //创建JComboBox
-		cmbStockName.addItem("--请选择商品--");
+		cmbStockName.addItem("--Product--");
 		jpan2.add(cmbStockName);
 		
 		
 		
-		JLabel JL3=new JLabel("商品数量");
+		JLabel JL3=new JLabel("Num");
 		jpan2.add(JL3);
 		
 		stockNumIn=new JTextField(8);
@@ -124,14 +124,14 @@ public class InStockPan extends JPanel {
 		
 		
 		
-		JLabel JL4=new JLabel("商品价格");
+		JLabel JL4=new JLabel("Price");
 		jpan2.add(JL4);
 		
 		stockPricIn=new JTextField(6);
 		jpan2.add(stockPricIn);
 		
 		
-		JLabel JL5=new JLabel("订单编号");
+		JLabel JL5=new JLabel("ID");
 		jpan2.add(JL5);
 		
 		JTextField stockNum = new JTextField(8);
@@ -154,13 +154,13 @@ public class InStockPan extends JPanel {
 				//将数据获取  写入到数据库里面
 				//InStockDao.writeStock(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY)
 				if(cmbSupName.getSelectedIndex()==0) {
-					JOptionPane.showMessageDialog(null, "请选择供应商", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
 				}else if(cmbStockName.getSelectedIndex()==0) {
-					JOptionPane.showMessageDialog(null, "请选择商品", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a product", "Message",JOptionPane.WARNING_MESSAGE);
 				}else if(stockNumIn.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入数量", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the num", "Message",JOptionPane.WARNING_MESSAGE);
 				}else if(stockPricIn.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入价格", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the price", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					String sup=(String)cmbSupName.getSelectedItem();
 					String sun=(String)cmbStockName.getSelectedItem();
@@ -169,16 +169,16 @@ public class InStockPan extends JPanel {
 					String peo=Login.jtextfield.getText();
 					int a=InStockDao.writeStock(sup, sun, num, pri,peo);
 					if(a==0) {
-						JOptionPane.showMessageDialog(null, "添加失败", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Add Failed", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==3) {
-						JOptionPane.showMessageDialog(null, "请将价格或数据填数字类型", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please fill in the data in the numeric type", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==1) {
-						JOptionPane.showMessageDialog(null, "添加成功", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Add successful", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==4) {
-						JOptionPane.showMessageDialog(null, "库存不足不能删除当前订单", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Cannot delete current order because of insufficient stock", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					
 					

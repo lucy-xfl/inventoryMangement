@@ -18,7 +18,7 @@ public class ShowInOutStock extends JPanel{
 	
 	
 	//表格的数据
-	Object columns[] ={"订单编号","供应商","商品名字","出入库时间","商品数量","商品价格","操作人"};//标题信息
+	Object columns[] ={"ID","Supplier","Stoke name","InTime","Num","Price","Account"};//标题信息
 	JTable tableL=null;//表格
 	JScrollPane jscrollpane;//滚动条
 	public static DefaultTableModel  model;//定义表格的控制权
@@ -35,12 +35,12 @@ public class ShowInOutStock extends JPanel{
 		
 		this.setLayout(new FlowLayout(FlowLayout.LEFT,25,30));
 		
-		JLabel JL=new JLabel("订单");
+		JLabel JL=new JLabel("Orders");
 		this.add(JL);
 		JTextField JT1=new JTextField(12);
 		this.add(JT1);
-		JRadioButton jrb1=new JRadioButton("查找入库信息");
-		JRadioButton jrb2=new JRadioButton("查找出库信息");
+		JRadioButton jrb1=new JRadioButton("Find inbound information");
+		JRadioButton jrb2=new JRadioButton("Find outbound information");
 		
 		ButtonGroup bg=new ButtonGroup();;	
 		bg.add(jrb1);			//必须要把单选框放入按钮组作用域中才能实现单选！！！！
@@ -48,10 +48,10 @@ public class ShowInOutStock extends JPanel{
 		this.add(jrb1);
 		this.add(jrb2);
 		jrb1.setSelected(true);
-		JButton JB=new JButton("查找记录");
+		JButton JB=new JButton("History");
 		this.add(JB);
 		table();
-		this.setBorder(BorderFactory.createTitledBorder("数据查询"));
+		this.setBorder(BorderFactory.createTitledBorder("Search"));
 		
 		JB.addActionListener(new ActionListener() {
 

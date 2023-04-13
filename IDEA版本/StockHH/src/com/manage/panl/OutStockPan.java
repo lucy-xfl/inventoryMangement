@@ -29,7 +29,7 @@ public class OutStockPan extends JPanel {
 
 	
 	//表格的数据
-	Object columns[] ={"订单编号","供应商","商品名字","出库时间","商品数量","商品价格","商品库存","用户"};//标题信息
+	Object columns[] ={"ID","Supplier","Stock Name","Out-time","Num","Price","Total-num","Account"};//标题信息
 	JTable tableL=null;//表格
 	JScrollPane jscrollpane;//滚动条
 	public static DefaultTableModel  model;//定义表格的控制权
@@ -64,19 +64,19 @@ public class OutStockPan extends JPanel {
 		this.add(jpan1);
 	
 		// 定义5个按钮 
-		JButton JB1=new JButton("开始出库");
+		JButton JB1=new JButton("Depot");
 		jpan1.add(JB1);
 		
 		// 定义5个按钮 
-		JButton JB2=new JButton("删除出库");
+		JButton JB2=new JButton("Delete");
 		jpan1.add(JB2);
 		
 		// 定义5个按钮 
-		JButton JB3=new JButton("更改出库");
+		JButton JB3=new JButton("Change");
 		jpan1.add(JB3);
 		
 		// 定义5个按钮 
-		JButton JB4=new JButton("查找出库");
+		JButton JB4=new JButton("Find");
 		jpan1.add(JB4);
 		
 		
@@ -88,28 +88,28 @@ public class OutStockPan extends JPanel {
 		jpan2.setBounds(0, 60, WIDTH-20, 100);
 	
 		
-		JLabel JL1=new JLabel("商品供应商");
+		JLabel JL1=new JLabel("Supplier");
 		jpan2.add(JL1);
 		this.setBorder(BorderFactory.createTitledBorder(""));
 		
 		
 	
 		cmbSupName=new JComboBox();    //创建JComboBox
-		cmbSupName.addItem("--请选择供应商--");
+		cmbSupName.addItem("--Supplier--");
 		jpan2.add(cmbSupName);
 		
 		
-		JLabel JL2=new JLabel("商品名称");
+		JLabel JL2=new JLabel("Stock Name");
 		jpan2.add(JL2);
 		
 		
 		cmbStockName=new JComboBox();    //创建JComboBox
-		cmbStockName.addItem("--请选择商品--");
+		cmbStockName.addItem("--Stock Name--");
 		jpan2.add(cmbStockName);
 		
 		
 		
-		JLabel JL3=new JLabel("商品数量");
+		JLabel JL3=new JLabel("Num");
 		jpan2.add(JL3);
 		
 		stockNumOut=new JTextField(6);
@@ -117,14 +117,14 @@ public class OutStockPan extends JPanel {
 		
 		
 		
-		JLabel JL4=new JLabel("商品价格");
+		JLabel JL4=new JLabel("Price");
 		jpan2.add(JL4);
 		
 		stockPricOut=new JTextField(6);
 		jpan2.add(stockPricOut);
 		
 		//购买人
-		JLabel JL5=new JLabel("客户");
+		JLabel JL5=new JLabel("Customer");
 		jpan2.add(JL5);
 		
 		stockUser=new JTextField(8);
@@ -133,7 +133,7 @@ public class OutStockPan extends JPanel {
 		
 		
 		
-		JLabel JL6=new JLabel("订单编号");
+		JLabel JL6=new JLabel("ID");
 		jpan2.add(JL6);
 		
 		JTextField stockNum = new JTextField(8);
@@ -173,15 +173,15 @@ public class OutStockPan extends JPanel {
 				//将数据获取  写入到数据库里面
 				//InStockDao.writeStock(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY)
 				if(cmbSupName.getSelectedIndex()==0) {
-					JOptionPane.showMessageDialog(null, "请选择供应商", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a supplier", "message",JOptionPane.WARNING_MESSAGE);
 				}else if(cmbStockName.getSelectedIndex()==0) {
-					JOptionPane.showMessageDialog(null, "请选择商品", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a product", "message",JOptionPane.WARNING_MESSAGE);
 				}else if(stockNumOut.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入数量", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the number", "message",JOptionPane.WARNING_MESSAGE);
 				}else if(stockPricOut.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入价格", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the price", "message",JOptionPane.WARNING_MESSAGE);
 				}else if(stockUser.getText().equals("")){
-					JOptionPane.showMessageDialog(null, "请输入用户名", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the account", "message",JOptionPane.WARNING_MESSAGE);
 					
 				}
 				else{
@@ -200,16 +200,16 @@ public class OutStockPan extends JPanel {
 					
 					
 					if(a==0) {
-						JOptionPane.showMessageDialog(null, "添加失败", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Add Failed", "message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==3) {
-						JOptionPane.showMessageDialog(null, "请将价格或数据填数字类型", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Enter a number", "message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==1) {
-						JOptionPane.showMessageDialog(null, "添加成功", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Add successful", "message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==4) {
-						JOptionPane.showMessageDialog(null, "库存不足不能出库", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Can't outbound because of insufficient stock", "message",JOptionPane.WARNING_MESSAGE);
 					}
 					
 					

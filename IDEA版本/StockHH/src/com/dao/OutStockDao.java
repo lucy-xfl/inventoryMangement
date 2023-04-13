@@ -35,7 +35,7 @@ public class OutStockDao {
 			
 		}catch(SQLException e) {
 			
-			if(e.getMessage().equals("仓库库存不足不能进行出货")) {
+			if(e.getMessage().equals("Cannot ship due to lack of inventory in the warehouse")) {
 				return 4;
 			}else {
 				return 3;
@@ -124,7 +124,7 @@ public class OutStockDao {
 					return num1;
 					
 				}catch(SQLException e) {
-					if(e.getMessage().equals("仓库库存不足不能进行更改出货")) {
+					if(e.getMessage().equals("Cannot make changes to shipments due to lack of inventory in the warehouse")) {
 						return 4;
 					}else {
 						return 3;

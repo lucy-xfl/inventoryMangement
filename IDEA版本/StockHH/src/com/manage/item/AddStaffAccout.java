@@ -32,44 +32,44 @@ public class AddStaffAccout {
 	
 	void init() {
 		
-		jframe.setTitle("添加员工账号号");
+		jframe.setTitle("c");
 		jframe.setLayout(new FlowLayout(FlowLayout.CENTER));
 		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);
 		//5个标签  4个文本框
-		JLabel JL=new JLabel("添加员工账号");//大标题 
+		JLabel JL=new JLabel("Add Staff account");//大标题
 		jframe.add(JL);
 		Style style=new Style();
 		JL.setFont(style.title);
 		
-		JLabel JL1=new JLabel("员工工号:");//大标题 
+		JLabel JL1=new JLabel("Account:");//大标题
 		jframe.add(JL1);
 		JTextField JT1=new JTextField(10);
 		jframe.add(JT1);
 		
-		JLabel JL5=new JLabel("账号密码:");//大标题 
+		JLabel JL5=new JLabel("Password:");//大标题
 		jframe.add(JL5);
 		JPasswordField JT5=new JPasswordField(10);
 		jframe.add(JT5);
 		
 		
-		JLabel JL6=new JLabel("确认密码:");//大标题 
+		JLabel JL6=new JLabel("Confirm Password:");//大标题
 		jframe.add(JL6);
 		JPasswordField JT6=new JPasswordField(10);
 		jframe.add(JT6);
 		
-		JLabel JL4=new JLabel("员工邮箱:");//大标题 
+		JLabel JL4=new JLabel("Email:");//大标题
 		jframe.add(JL4);
 		JTextField JT4=new JTextField(10);
 		jframe.add(JT4);
 		
 		
 		
-		JLabel JL2=new JLabel("员工姓名:");//大标题 
+		JLabel JL2=new JLabel("Name:");//大标题
 		jframe.add(JL2);
 		JTextField JT2=new JTextField(10);
 		jframe.add(JT2);
 		
-		JLabel JL3=new JLabel("员工地址:");//大标题 
+		JLabel JL3=new JLabel("Address:");//大标题
 		jframe.add(JL3);
 		JTextField JT3=new JTextField(10);
 		jframe.add(JT3);
@@ -77,10 +77,10 @@ public class AddStaffAccout {
 		
 	
 		//一个按钮
-		JButton JB=new JButton("添加员工");
+		JButton JB=new JButton("Add Staff");
 		jframe.add(JB);
 		
-		JButton JB1=new JButton("重置信息");
+		JButton JB1=new JButton("Reset");
 		jframe.add(JB1);
 		//重置所有内容
 		JB1.addActionListener(new ActionListener() {
@@ -118,16 +118,16 @@ public class AddStaffAccout {
 				
 				
 				if(account.equals("")) {
-					JOptionPane.showMessageDialog(null, "员工工号不能为空", "登录消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Account cannot be empty", "Login Message",JOptionPane.WARNING_MESSAGE);
 				}else if(password.equals("")) {
-					JOptionPane.showMessageDialog(null, "员工密码不能为空", "登录消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Password cannot be empty", "Login Message",JOptionPane.WARNING_MESSAGE);
 				}else if(okpassword.equals("")) {
-					JOptionPane.showMessageDialog(null, "确认密码不能为空", "登录消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Confirm password cannot be empty", "Login Message",JOptionPane.WARNING_MESSAGE);
 				}else if(!okpassword.equals(password)) {
 					JOptionPane.showMessageDialog(null, "两次密码不一致", "登录消息",JOptionPane.WARNING_MESSAGE);
 				}else if(emain.equals("")){
 					
-					JOptionPane.showMessageDialog(null, "邮箱地址不能为空", "登录消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Address cannot be empty", "Login Message",JOptionPane.WARNING_MESSAGE);
 					
 					
 				}else {
@@ -135,13 +135,13 @@ public class AddStaffAccout {
 					int a=AddAcount.writeAccount(account, okpassword, name, address, emain);
 					
 					if(a==0) {
-						JOptionPane.showMessageDialog(null, "添加失败", "登录消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Add Failed", "Login Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==1) {
-						JOptionPane.showMessageDialog(null, "添加成功", "登录消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Add successful", "Login Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==3) {
-						JOptionPane.showMessageDialog(null, "请检查工号是否重复", "登录消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please check if the work number is duplicated", "Login Message",JOptionPane.WARNING_MESSAGE);
 					}
 					
 					

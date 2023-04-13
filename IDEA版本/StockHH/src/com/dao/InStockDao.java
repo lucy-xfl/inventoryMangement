@@ -91,7 +91,7 @@ public class InStockDao {
 		}catch(SQLException e) {
 			
 			
-			if(e.getMessage().equals("仓库库存不足不能删除此订单")) {
+			if(e.getMessage().equals("Cannot be deleted due to lack of inventory in the warehouse")) {
 				return 4;
 			}else {
 				return 3;
@@ -118,7 +118,7 @@ public class InStockDao {
 			return num1;
 			
 		}catch(SQLException e) {
-			if(e.getMessage().equals("仓库库存不足不能进行更改出货")) {
+			if(e.getMessage().equals("Cannot be updated due to lack of inventory in the warehouse")) {
 				return 4;
 			}else {
 				return 3;

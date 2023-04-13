@@ -12,7 +12,7 @@ import com.until.DBUtil;
 public class LoginDao {
 	 //处理登录事件的类
 	static Connection con=DBUtil.conn;//将连接的con传过来
-	//登录状体  成功true 失败则fals
+	//登录状态  成功true 失败则fails
 	public static boolean  loginStar(String account ,String password ) {
 		//第一个账号，第二个是密码  预处理 
 	

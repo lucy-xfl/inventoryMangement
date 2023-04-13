@@ -100,7 +100,7 @@ public static int wiretSupSun(String subname ,String sunname) {
 		
 		//移除传递过来的所有项目
 		cmb1.removeAllItems();
-		cmb1.addItem("--请选择供应商--");
+		cmb1.addItem("--Supplier--");
 		
 		int star=0;//为0表示没有数据  1有数据
 		PreparedStatement preSql;//预处语句
@@ -130,7 +130,7 @@ public static int wiretSupSun(String subname ,String sunname) {
 		
 		//移除传递过来的所有项目
 		cmb1.removeAllItems();
-		cmb1.addItem("--请选择商品--");
+		cmb1.addItem("--Product--");
 		
 		int star=0;//为0表示没有数据  1有数据
 		PreparedStatement preSql;//预处语句
