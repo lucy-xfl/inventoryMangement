@@ -40,7 +40,6 @@ public class outBarPanl extends JPanel{
 		this.removeAll();
 		this.repaint();
 	}
-
 	//Add inbound and outbound Pie-chart and repaint method
 	public void rep1() {
 		this.add(new outBarChart().getChartPanel());

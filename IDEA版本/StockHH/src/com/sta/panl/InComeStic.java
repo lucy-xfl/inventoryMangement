@@ -18,8 +18,6 @@ public class InComeStic extends JPanel{
 	final int HEIGHT=50;//Set the height of the top level frame
 
 
-	
-	
 	public InComeStic(int x,int y,int width,int height) {
 		//Set the location and size
 		this.setBounds(x, y, width, height-60);

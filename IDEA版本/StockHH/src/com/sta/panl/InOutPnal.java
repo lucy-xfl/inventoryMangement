@@ -88,7 +88,6 @@ public class InOutPnal {
 		JPM.setBorder(BorderFactory.createTitledBorder(""));
 		JP1.setBorder(BorderFactory.createTitledBorder("Statistical data"));
 
-
 		//add listener to jb2
 		JB2.addActionListener(new ActionListener() {
 

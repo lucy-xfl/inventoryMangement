@@ -63,7 +63,7 @@ public class InStockPan extends JPanel {
 		//Set the size and location of the panel one
 		jpan1.setBounds(0, 0, WIDTH-20, 70);
 		jpan1.setOpaque(false);
-		
+
 		this.add(jpan1);
 	
 		//Declare 4 buttons

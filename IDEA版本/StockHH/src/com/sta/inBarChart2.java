@@ -62,7 +62,7 @@ public class inBarChart2 {
 
 		//Store the data retrieved from the database.
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         int i=0;//unique column keys for the dataset
 		//SQL query to retrieve top 9 inbound goods by quantity
         String SqlStr= "select * from instock ORDER BY num desc LIMIT 0, 9";

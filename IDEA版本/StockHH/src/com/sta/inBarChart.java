@@ -55,7 +55,7 @@ public class inBarChart {
 		frame1=new ChartPanel(chart,true);
 	      
 	}
-	
+
 	//A method of getting the data to create the dataset for the bar chart
 	private  CategoryDataset getDataSet() {
 		// TODO Auto-generated method stub
