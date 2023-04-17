@@ -61,7 +61,7 @@ public class outBarChart {
 
 		//Create a new DefaultCategoryDataset object to store the data
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         int i=0;//unique column keys for the dataset
 
 		//Define a SQL query to retrieve the top 3 suppliers by total quantity sold

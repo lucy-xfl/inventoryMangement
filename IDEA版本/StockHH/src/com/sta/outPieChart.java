@@ -90,7 +90,7 @@ public class outPieChart {
 						sumpric=-sumpric;
 						dataset.setValue(supname1,sumpric);
 					}
-					
+
 					
 				}
 				rs1.close();

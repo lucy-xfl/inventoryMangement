@@ -16,7 +16,8 @@ import com.sta.outPieChart;
 public class InComeStic extends JPanel{
 	final int WIDTH=730;//Set the width of the top-level frame
 	final int HEIGHT=50;//Set the height of the top level frame
-	
+
+
 	
 	
 	public InComeStic(int x,int y,int width,int height) {

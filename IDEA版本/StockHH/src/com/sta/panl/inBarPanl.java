@@ -21,7 +21,7 @@ public class inBarPanl extends JPanel{
 		this.setBounds(x, y, width, height-60);
 		init();
 	}
-	
+
 
 	//initialize the layout and barchart
 	void init() {
