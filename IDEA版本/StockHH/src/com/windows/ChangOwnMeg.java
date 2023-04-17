@@ -10,7 +10,7 @@ import com.tool.Tool;
 
 public class ChangOwnMeg {
 	final int WIDTH=200;//Set the width of the top-level frame
-	final int HEIGHT=222;//Set the height of the top level frame
+	final int HEIGHT=350;//Set the height of the top level frame
 	JFrame jframe=new JFrame();
 	public JTextField JT1;
 	public JTextField JT2;
