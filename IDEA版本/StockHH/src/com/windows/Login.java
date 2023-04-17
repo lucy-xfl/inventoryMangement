@@ -25,8 +25,8 @@ public class Login {
 	public static JTextField jtextfield;
 	public static JPasswordField jtextfield1;
 
-	final int WIDTH=500;//设置顶层框架的宽度
-	final int HEIGHT=350;//设置顶层框架的高度
+	final int WIDTH=500;//Set the width of the top-level frame
+	final int HEIGHT=350;//Set the height of the top-level frame
 	
 	String title;
 	JFrame jframe=new JFrame();
@@ -39,64 +39,64 @@ public class Login {
 	Login(String title){
 		this.title=title;
 		init();
-		jframe.setVisible(true); //设置当前窗口是否可显示 
-		jframe.setResizable(false);//窗口的大小不可边
-		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//设置默认关闭方式
-		jframe.validate();//让组件生效
+		jframe.setVisible(true); //Set whether the current window can be displayed
+		jframe.setResizable(false);//The size of the window cannot be changed
+		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Set the default closing method
+		jframe.validate();//Making components work
 		jframe.setIconImage(new ImageIcon("src/img/icons8-warehouse-100.png").getImage());
 	}
 
 	void init() {
 
 	//	jframe.setIconImage(new ImageIcon("src/img/icons8-warehouse-100.png").getImage());
-		//设置标题
+		//Set title
 		
 		jframe.setTitle(title);
-		//设置窗口的位置
-		// 设置当前窗口的大小
+		//Set the position of the window
+		// Set the size of the current window
 		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);
 	
-		//大小设置完毕了。
-		flowlayout=new FlowLayout(flowlayout.CENTER);//居中对齐
+		//The size is now set
+		flowlayout=new FlowLayout(flowlayout.CENTER);//Center Alignment
 		Style style=new Style();
 		jframe.setLayout(null);
 		
-		//先把图片放入进来
-		ImageIcon img=new ImageIcon("src/img/Login.jpg");//将图片读取放到img变量里面
+		//Put the picture in first
+		ImageIcon img=new ImageIcon("src/img/Login.jpg");//Read the image into the img variable
 		JLabel bgimg = new JLabel(img);
-		bgimg.setBounds(0,0,500,350);//设置背景图片 设置背景位置
+		bgimg.setBounds(0,0,500,350);//Set background image Set background position
 		
 		
-		//定义两个框框 分别装账号，密码标题
+		//Define two JPanel with account number and password title respectively
 		JPanel jpnel1=new JPanel();
 		jpnel1.setLayout(flowlayout);
 		jpnel1.setBounds(0, 0,500, 45);
 		
-		//添加标题
-		JLabel jlabel1=new JLabel("仓库管理系统登录");
+		//Add Title
+		JLabel jlabel1=new JLabel("Inventory Management System Login");
 		jlabel1.setFont(style.title);
 		jpnel1.add(jlabel1);
 		jpnel1.setOpaque(false);
-		//创建盘子二
+		//Create JPanel2
 		JPanel jpnel2=new JPanel();
 		jpnel2.setLayout(flowlayout);
 		jpnel2.setBounds(125, 45,210, 230);
 		jpnel2.setOpaque(false);
 		
-		JLabel jlabel2=new JLabel("账号");
+		JLabel jlabel2=new JLabel("Account Number");
 		jlabel2.setFont(style.account);
 		jpnel2.add(jlabel2);
-		//添加账号框
+		//Add account box
 		jtextfield=new JTextField(10);
 		jtextfield.setFont(style.accounttext);
 		jpnel2.add(jtextfield);
 		
-		JLabel jlabel3=new JLabel("密码");
+		JLabel jlabel3=new JLabel("Password");
 		jlabel3.setFont(style.account);
 		jpnel2.add(jlabel3);
 		
 		
-		//添加账号框
+		//Add password box
 		jtextfield1=new JPasswordField(10);
 		jtextfield1.setFont(style.accounttext);
 		jpnel2.add(jtextfield1);
@@ -104,19 +104,19 @@ public class Login {
 		
 		//JLabel AAA=new JLabel("            ");
 		//jpnel2.add(AAA);
-		//添加两个单选框
-		//JCheckBox JC1 = new JCheckBox("保存密码");//
+		//Add two radio boxes
+		//JCheckBox JC1 = new JCheckBox("Save password");//
 		//JC1.setOpaque(false);
 		//jpnel2.add(JC1);
-		//JCheckBox JC2 = new JCheckBox("自动登录");//
+		//JCheckBox JC2 = new JCheckBox("Automatic Login");//
 		//jpnel2.add(JC2);
 		//JC2.setOpaque(false);
 		
 		
 		
 		
-		// 登录按钮
-		JButton jbutton=new JButton("安全登录");
+		// Login button
+		JButton jbutton=new JButton("Secure Login");
 		jbutton.setFont(style.ok);
 		jbutton.setPreferredSize(new Dimension(195,35) );
 		jbutton.setBackground(Color.gray);
@@ -128,16 +128,16 @@ public class Login {
 
 		jframe.add(jpnel2);
 		jframe.add(jpnel1);
-		JLabel jl=new JLabel("忘记密码");
+		JLabel jl=new JLabel("Forgot password");
 		jframe.add(jl);
-		jl.setBounds(430, 160, 300, 40);
+		jl.setBounds(350, 160, 300, 40);
 		//register.setFont(fronts.register);
 		jl.setForeground(Color.DARK_GRAY);
 		
 		jframe.add(bgimg);
 		
 		
-		//标签只能添加鼠标箭头
+		//Tabs can only add mouse arrows
 		jl.addMouseListener( new MouseListener() {
 
 			@Override
@@ -178,17 +178,18 @@ public class Login {
 	
 		
 		
-		//以下是监听事件
+		//The following events are listened to
 		
 		jbutton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//将账号  和密码获取到 并做响应的提示 
-				//将账号和密码，跟数据库进行匹对，同时在匹对权限，实现跳转不同的界面
+				//Get the account number and password and respond to the prompt
+				//Match the account number and password with the database,
+				//and at the same time, in the matching permission, realize jumping to different interfaces.
 				
-				String account=jtextfield.getText();//获取账号
+				String account=jtextfield.getText();//Get Account
 				
 				char []str=jtextfield1.getPassword();
 				String password=new String(str);
@@ -196,28 +197,28 @@ public class Login {
 				
 				boolean star = LoginDao.loginStar(account, password);
 				if(star==true) {
-					System.out.println("登录成功");
-					//之后，还需要判断 权限 在那个等级 根据等级进行跳转不同的界面
+					System.out.println("Login successful");
+					//After that, you need to determine the level of authority and jump to different screens according to the level.
 					int pow=LoginDao.loginPow(account, password);
 					if(pow==2) {
-						//则是管理员
+						//And the Manager
 						jframe.dispose();
 						MangePeopleWindows a=new MangePeopleWindows();
 						SupManDao.readSup(InStockPan.cmbSupName);
 						
 					}else if(pow==1) {
-						//则是普通用户
+						//And the Staff
 						jframe.dispose();
 						StaiffWindows a=new StaiffWindows();
 					}else {
-						//报错
-						JOptionPane.showMessageDialog(null, "系统错误", "登录消息",JOptionPane.WARNING_MESSAGE);
+						//Report an error
+						JOptionPane.showMessageDialog(null, "System Error", "Login Message",JOptionPane.WARNING_MESSAGE);
 					}
 					
 					
 				}else {
 					
-					JOptionPane.showMessageDialog(null, "账号或者密码错误！", "登录消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Wrong account or password!", "Login Message",JOptionPane.WARNING_MESSAGE);
 				}
 				
 		

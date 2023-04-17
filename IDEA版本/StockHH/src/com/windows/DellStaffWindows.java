@@ -14,43 +14,43 @@ import com.tool.Tool;
 public class DellStaffWindows {
 	
 	
-	Object columns[] ={"员工工号","权限","员工姓名","员工住址","员工邮箱"};//标题信息
-	JTable tableL=null;//表格
-	JScrollPane jscrollpane;//滚动条
-	public static DefaultTableModel  model;//定义表格的控制权
+	Object columns[] ={"Staff Work Number","Permissions","Staff Name","Staff Address","Staff Email"};//Title Information
+	JTable tableL=null;//Forms
+	JScrollPane jscrollpane;//Scroll bar
+	public static DefaultTableModel  model;//Defining the control of the form
 	
-	final int WIDTH=500;//设置顶层框架的宽度
-	final int HEIGHT=400;//设置顶层框架的高度
+	final int WIDTH=500;//Set the width of the top-level frame
+	final int HEIGHT=400;//Set the height of the top-level frame
 	JFrame jframe=new JFrame();
 	
 	public DellStaffWindows() {
 		
 
 		init();
-		jframe.setVisible(true); //设置当前窗口是否可显示 
-		jframe.setResizable(false);//窗口的大小不可边
-		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//设置默认关闭方式
-		jframe.validate();//让组件生效
+		jframe.setVisible(true); //Set whether the current window can be displayed
+		jframe.setResizable(false);//The size of the window cannot be changed
+		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Set the default closing method
+		jframe.validate();//Making components work
 		jframe.setIconImage(new ImageIcon("src/img/icons8-warehouse-100.png").getImage());
 	}
 	
 	void init() {
 		
 		
-		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);//让窗口居中显示的
-		jframe.setTitle("删除员工账号");
+		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);//To center the window
+		jframe.setTitle("Delete staff accounts");
 		
-		//一个标签  一个文本框  一个  按钮    采用流布局
-		jframe.setLayout(new FlowLayout(FlowLayout.LEFT));//设置为左对齐
+		//A label, a text box, a button, and a flow layout.
+		jframe.setLayout(new FlowLayout(FlowLayout.LEFT));//Set to left alignment
 		
-		JLabel JL1=new JLabel("员工工号");
+		JLabel JL1=new JLabel("Staff Work Number");
 		jframe.add(JL1);
 		JTextField JT1=new JTextField(12);
 		jframe.add(JT1);
 		
-		JButton JB1=new JButton("删除员工账号");
+		JButton JB1=new JButton("Delete Staff accounts");
 		jframe.add(JB1);
-		JButton JB2=new JButton("查询员工账号");
+		JButton JB2=new JButton("Check Staff Account Number");
 		jframe.add(JB2);
 		table();
 		jframe.add(jscrollpane);
@@ -60,20 +60,20 @@ public class DellStaffWindows {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//将文本框的内容传入过来
+				//Pass in the contents of the text box
 				String sqlStr="delete from users where account=?";
 				
 				String  data[]=new String [1];
 				data[0]=JT1.getText();
 				int a=Tool.dellData(sqlStr, data);
 				if(a==0) {
-					JOptionPane.showMessageDialog(null, "请检查账号是否存在", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please check if the account exists", "Message",JOptionPane.WARNING_MESSAGE);
 				}
 				if(a==-1) {
-					JOptionPane.showMessageDialog(null, "请检查账号输入内容", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please check the account input content", "Message",JOptionPane.WARNING_MESSAGE);
 				}
 				if(a>=1) {
-					JOptionPane.showMessageDialog(null, "删除成功", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Deleted successfully", "Message",JOptionPane.WARNING_MESSAGE);
 				}
 				
 			}
@@ -84,7 +84,7 @@ public class DellStaffWindows {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String sqlStr="select account,if(pow=1,'普通用户','管理员'),sname,saddress,semail from users";
+				String sqlStr="select account,if(pow=1,'Staff Account','Manager'),sname,saddress,semail from users";
 				
 				
 				ResultSet rs = Tool.showData(sqlStr, null);
@@ -101,21 +101,22 @@ public class DellStaffWindows {
 	}
 	void table() {
 		
-		tableL=getTable();//初始化表格
-		jscrollpane=new JScrollPane(tableL);//添加一个浏览窗格
-		tableL.setPreferredSize(new Dimension(WIDTH-30,10000));//给表格设置大小
-		jscrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);//将滑动组件显示在窗口中
+		tableL=getTable();//Initialization Form
+		jscrollpane=new JScrollPane(tableL);//Add a browse pane
+		tableL.setPreferredSize(new Dimension(WIDTH-30,10000));//Setting the size of a table
+		jscrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);//Display sliding components in the window
 		//jscrollpane.setBounds(0, 170, WIDTH-30, 360);
-		jscrollpane.setPreferredSize(new Dimension(WIDTH-30,320));//给表格设置大小
+		jscrollpane.setPreferredSize(new Dimension(WIDTH-30,320));//Setting the size of a table
 		
 	}
 	
 	JTable getTable() {
-		//如果表格为空则创建表格
+		//Create a table if it is empty
 		if(tableL==null) {
-			tableL=new JTable();//创建 
+			tableL=new JTable();//Create
 			model=new DefaultTableModel() {
-				//添加一些对表格的控制 设置表格 不可动  不可编辑
+				//Add some control over the table
+				//Set the table to be immovable and non-editable
 				public boolean isCellEditable(int row, int column)
 				{
 				return false;
@@ -125,12 +126,11 @@ public class DellStaffWindows {
 			
 		
 		model.setColumnIdentifiers(columns);
-		tableL.setModel(model);//设置为表格的模式
+		tableL.setModel(model);//Set to the mode of the table
 		
-		tableL.getTableHeader().setReorderingAllowed(false);//让表格不可拖动
-		tableL.getTableHeader().setResizingAllowed(false);//让表格不可拖动
-			
-		//列宽 和行数  并且让表格不可编辑
+		tableL.getTableHeader().setReorderingAllowed(false);//Make the table non-draggable
+		tableL.getTableHeader().setResizingAllowed(false);//Make the table unchangeable in size
+
 			
 			
 		}

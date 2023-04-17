@@ -9,8 +9,8 @@ import javax.swing.*;
 import com.tool.Tool;
 
 public class ChangOwnMeg {
-	final int WIDTH=200;//设置顶层框架的宽度
-	final int HEIGHT=222;//设置顶层框架的高度
+	final int WIDTH=200;//Set the width of the top-level frame
+	final int HEIGHT=222;//Set the height of the top level frame
 	JFrame jframe=new JFrame();
 	public JTextField JT1;
 	public JTextField JT2;
@@ -19,32 +19,32 @@ public class ChangOwnMeg {
 		
 
 		init();
-		jframe.setVisible(true); //设置当前窗口是否可显示 
-		jframe.setResizable(false);//窗口的大小不可边
-		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//设置默认关闭方式
-		jframe.validate();//让组件生效
+		jframe.setVisible(true); //Set whether the current window can be displayed
+		jframe.setResizable(false);//The size of the window cannot be changed
+		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Set the default closing method
+		jframe.validate();//Making components work
 		jframe.setIconImage(new ImageIcon("src/img/icons8-warehouse-100.png").getImage());
 	}
 	
-	//初始化
+	//Initialization
 	void init() {
 		
-		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);//让窗口居中显示的
-		jframe.setTitle("更改个人信息");
+		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);//To center the window
+		jframe.setTitle("Change personal information");
 		
-		//一个标签  一个文本框  一个  按钮    采用流布局
+		//A label, a text box, a button, and a flow layout.
 		jframe.setLayout(new FlowLayout(FlowLayout.CENTER,10,20));//设置为左对齐
 		
-		//3个标签
-		//3个文本框
-		//2个按钮
+		//3 JLabel
+		//3 JTextField
+		//2 JButton
 		
-		JLabel JL1=new JLabel("姓名");
+		JLabel JL1=new JLabel("Name");
 		jframe.add(JL1);
 		JT1=new JTextField(12);
 		jframe.add(JT1);
 		
-		JLabel JL2=new JLabel("地址");
+		JLabel JL2=new JLabel("Address");
 		jframe.add(JL2);
 		JT2=new JTextField(12);
 		jframe.add(JT2);
@@ -52,17 +52,17 @@ public class ChangOwnMeg {
 		
 		
 		
-		JLabel JL3=new JLabel("邮箱");
+		JLabel JL3=new JLabel("Email Address");
 		jframe.add(JL3);
 		JT3=new JTextField(12);
 		jframe.add(JT3);
 		
-		JButton JB=new JButton("保存");
-		JButton JB1=new JButton("重置");
+		JButton JB=new JButton("Save");
+		JButton JB1=new JButton("Reset");
 		jframe.add(JB1);
 		jframe.add(JB);
 		
-		//重置功能
+		//Reset Function
 		JB1.addActionListener(new ActionListener() {
 
 			@Override
@@ -78,7 +78,7 @@ public class ChangOwnMeg {
 		});
 		
 		
-		//更改的功能
+		//Change Function
 		JB.addActionListener(new ActionListener() {
 
 			@Override
@@ -96,18 +96,18 @@ public class ChangOwnMeg {
 				 String sqlStr="update users set sname=?,saddress=?,semail=? where account=?";
 				
 				 if(data[2].equals("")) {
-					 JOptionPane.showMessageDialog(null, "邮箱不能为空", "登录消息",JOptionPane.WARNING_MESSAGE);
+					 JOptionPane.showMessageDialog(null, "Mailbox cannot be empty", "Login Message",JOptionPane.WARNING_MESSAGE);
 					 
 				 }else {
 					 int a=Tool.changeData(sqlStr, data);
 						if(a==0) {
-							JOptionPane.showMessageDialog(null, "请检查输入账号", "登录消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please check the input account number", "Login Message",JOptionPane.WARNING_MESSAGE);
 						}
 						if(a==1) {
-							JOptionPane.showMessageDialog(null, "更改成功", "登录消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Change successful", "Login Message",JOptionPane.WARNING_MESSAGE);
 						}
 						if(a==-1) {
-							JOptionPane.showMessageDialog(null, "系统报错", "登录消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "System error report", "Login Message",JOptionPane.WARNING_MESSAGE);
 						}
 					 
 					 

@@ -15,19 +15,19 @@ import com.until.DBUtil;
 public class Tool {
 
 	static Connection con=DBUtil.conn;
-	//设置窗口居中
+	//Set window centering
 	public static void setWindowPosCenter(int WIDTH,int HEIGHT,JFrame jframe) {
 		
-		Toolkit kit =Toolkit.getDefaultToolkit();//获取对象大小	//设置窗口位置
+		Toolkit kit =Toolkit.getDefaultToolkit();//Get object size	//Set window position
 		Dimension screenSize=kit.getScreenSize();
 		int width=screenSize.width;
-		int height=screenSize.height;//获取屏幕高度和宽度
+		int height=screenSize.height;//Get screen height and width
 		int x=(width-WIDTH)/2;
 		int y=(height-HEIGHT)/2;
 		jframe.setBounds(x, y, WIDTH, HEIGHT);
 		
 	}
-	//添加表格的模块化工具
+	//Modular tool for adding tables
 	public static  int addDataTable(ResultSet rs ,DefaultTableModel  model,int index) {
 		
 		int count=0;
@@ -64,11 +64,13 @@ public class Tool {
 	
 	
 	
-	//删除通用的方法   传入一个删除语句  数组存储数据
+	//Delete generic method
+	//Pass in a delete statement
+	//Array to store data
 	public static int dellData(String sqlStr,String data[]) {
-PreparedStatement preSql;//预处语句
+		PreparedStatement preSql;//Preliminary Statements
 		
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 
 		
 		int num=0;
@@ -86,7 +88,9 @@ PreparedStatement preSql;//预处语句
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return -1;
-			//-1保存  0没找到满足条件   >=1删除成功
+			//-1 save
+			//0 not found to meet the conditions
+			//>=1 delete successfully
 				
 			
 		}
@@ -94,12 +98,14 @@ PreparedStatement preSql;//预处语句
 		
 		
 	}
-	//查询通用方法
-	//删除通用的方法   传入一个删除语句  数组存储数据
+	//General method of query
+	//Delete generic method
+	//Pass in a delete statement
+	//Array to store data
 	public static ResultSet showData(String sqlStr,String data[]) {
-			PreparedStatement preSql;//预处语句
+			PreparedStatement preSql;//Preliminary Statements
 		
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 
 		
 		ResultSet rs=null;
@@ -120,7 +126,9 @@ PreparedStatement preSql;//预处语句
 		}catch(SQLException e) {
 			
 			return rs;
-			//-1保存  0没找到满足条件   >=1删除成功
+			//-1 save
+			//0 not found to meet the conditions
+			//>=1 delete successfully
 				
 			
 		}
@@ -130,9 +138,9 @@ PreparedStatement preSql;//预处语句
 	}
 	//通用更改的功能
 	public static int changeData(String sqlStr,String data[]) {
-		PreparedStatement preSql;//预处语句
+		PreparedStatement preSql;//Preliminary Statements
 				
-				//int num1 = Integer.parseInt(num);//将字符转换成整数
+				//int num1 = Integer.parseInt(num);//Convert characters to integers
 
 				
 				int num=0;
@@ -150,7 +158,9 @@ PreparedStatement preSql;//预处语句
 				}catch(SQLException e) {
 					e.printStackTrace();
 					return -1;
-					//-1保存  0没找到满足条件   >=1删除成功
+					//-1 save
+					//0 not found to meet the conditions
+					//>=1 delete successfully
 						
 					
 				}
