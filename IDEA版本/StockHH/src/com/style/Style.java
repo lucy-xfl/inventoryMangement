@@ -15,7 +15,7 @@ public class Style {
 	public Style(){
 		//对程序的初始话
 		
-		title=new Font("宋体",Font.BOLD,28);//第一个参数 是什么字体，第二个参数 是加粗 ，第三个参数 字体大小
+		title=new Font("宋体",Font.BOLD,20);//第一个参数 是什么字体，第二个参数 是加粗 ，第三个参数 字体大小
 		account=new Font("华文bai行楷",Font.BOLD,18);//标签
 		accounttext=new Font("宋体",Font.PLAIN,18);//账号框
 		ok=new Font("宋体",Font.BOLD,18);//登录按钮

@@ -13,8 +13,8 @@ import com.tool.Tool;
 public class AddStaffAccout {
 
 	
-	final int WIDTH=220;//设置顶层框架的宽度
-	final int HEIGHT=280;//设置顶层框架的高度
+	final int WIDTH=230;//设置顶层框架的宽度
+	final int HEIGHT=300;//设置顶层框架的高度
 	
 	JFrame jframe=new JFrame();
 	
@@ -41,7 +41,7 @@ public class AddStaffAccout {
 		Style style=new Style();
 		JL.setFont(style.title);
 		
-		JLabel JL1=new JLabel("Account:");//大标题
+		JLabel JL1=new JLabel("Account: ");//大标题
 		jframe.add(JL1);
 		JTextField JT1=new JTextField(10);
 		jframe.add(JT1);
@@ -52,24 +52,24 @@ public class AddStaffAccout {
 		jframe.add(JT5);
 		
 		
-		JLabel JL6=new JLabel("Confirm Password:");//大标题
+		JLabel JL6=new JLabel("Confirm: ");//大标题
 		jframe.add(JL6);
 		JPasswordField JT6=new JPasswordField(10);
 		jframe.add(JT6);
 		
-		JLabel JL4=new JLabel("Email:");//大标题
+		JLabel JL4=new JLabel("Email:  ");//大标题
 		jframe.add(JL4);
 		JTextField JT4=new JTextField(10);
 		jframe.add(JT4);
 		
 		
 		
-		JLabel JL2=new JLabel("Name:");//大标题
+		JLabel JL2=new JLabel("Name:   ");//大标题
 		jframe.add(JL2);
 		JTextField JT2=new JTextField(10);
 		jframe.add(JT2);
 		
-		JLabel JL3=new JLabel("Address:");//大标题
+		JLabel JL3=new JLabel("Address: ");//大标题
 		jframe.add(JL3);
 		JTextField JT3=new JTextField(10);
 		jframe.add(JT3);
@@ -124,7 +124,7 @@ public class AddStaffAccout {
 				}else if(okpassword.equals("")) {
 					JOptionPane.showMessageDialog(null, "Confirm password cannot be empty", "Login Message",JOptionPane.WARNING_MESSAGE);
 				}else if(!okpassword.equals(password)) {
-					JOptionPane.showMessageDialog(null, "两次密码不一致", "登录消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Not same", "Login Message",JOptionPane.WARNING_MESSAGE);
 				}else if(emain.equals("")){
 					
 					JOptionPane.showMessageDialog(null, "Address cannot be empty", "Login Message",JOptionPane.WARNING_MESSAGE);
