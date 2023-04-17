@@ -29,7 +29,7 @@ public class InStockPan extends JPanel {
 
 	
 	//表格的数据
-	Object columns[] ={"ID","Supplier","Stock Name","Storage time","Num","Price","Total Num"};//标题信息
+	Object columns[] ={"ID","Supplier","Name","Time","Num","Price","Total Num"};//标题信息
 	JTable tableL=null;//表格
 	JScrollPane jscrollpane;//滚动条
 	public static DefaultTableModel  model;//定义表格的控制权
@@ -101,7 +101,7 @@ public class InStockPan extends JPanel {
 		jpan2.add(cmbSupName);
 		
 		
-		JLabel JL2=new JLabel("Stock Name");
+		JLabel JL2=new JLabel("Name");
 		jpan2.add(JL2);
 		//_____________________________________________
 	
@@ -221,7 +221,7 @@ public class InStockPan extends JPanel {
 				//传递一个存储数据的rs  和一个表格   还需要一个表格的 长度
 			int a=Tool.addDataTable(rs, model,7 );
 			if(a==0) {
-				JOptionPane.showMessageDialog(null, "没有查到相关数据", "消息",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No relative data", "Message",JOptionPane.WARNING_MESSAGE);
 			}
 				
 			}else {
@@ -280,7 +280,7 @@ public class InStockPan extends JPanel {
 				
 			int a=Tool.addDataTable(rs, model,7 );
 			if(a==0) {
-				JOptionPane.showMessageDialog(null, "没有查到相关数据", "消息",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No Relative data", "Message",JOptionPane.WARNING_MESSAGE);
 			}
 				
 			}
@@ -300,20 +300,20 @@ public class InStockPan extends JPanel {
 				//直接输入  ID进行删除
 				String num=stockNum.getText();
 				if(num.equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入删除编号", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the deletion number", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					int a=InStockDao.dellStockData(num);
 					if(a==0) {
-						JOptionPane.showMessageDialog(null, "请检查输入编号是否存在", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please check if the input number exists", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==1) {
-						JOptionPane.showMessageDialog(null, "删除成功", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Deleted successfully", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==3) {
-						JOptionPane.showMessageDialog(null, "请检查输入编号是否为数字", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please check if the input number is a number", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==4) {
-						JOptionPane.showMessageDialog(null, "当前库存不足不能删除订单", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Current stock is not enough to delete an order", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					
 					
@@ -340,20 +340,20 @@ public class InStockPan extends JPanel {
 				String ID=null;//价格
 				
 				if(stockNum.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入ID编号", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the ID number", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					
 					if(cmbSupName.getSelectedIndex()==0) {
 						//则说明没有选择
 						
-						JOptionPane.showMessageDialog(null, "请选择供应商", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
 						
 					}else if(cmbStockName.getSelectedIndex()==0) {
-						JOptionPane.showMessageDialog(null, "请选择子产品", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please select a product", "Message",JOptionPane.WARNING_MESSAGE);
 					}else if(stockNumIn.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "商品数量不能为空", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "The number of products cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 					}else if(stockPricIn.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "商品价格不能为空", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Product price cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 					}else {
 						
 						//写入 
@@ -367,17 +367,17 @@ public class InStockPan extends JPanel {
 						
 						
 						if(a==0) {
-							JOptionPane.showMessageDialog(null, "数据未变动", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Data unchanged", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 						if(a==1) {
-							JOptionPane.showMessageDialog(null, "更改成功", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Change successful", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 						
 						if(a==3) {
-							JOptionPane.showMessageDialog(null, "请检查输入格式", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please check the input format", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 						if(a==4) {
-							JOptionPane.showMessageDialog(null, "库存不足不能进行更改", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Insufficient inventory to make changes", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 						
 						

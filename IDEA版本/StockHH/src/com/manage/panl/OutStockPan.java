@@ -109,7 +109,7 @@ public class OutStockPan extends JPanel {
 		
 		
 		
-		JLabel JL3=new JLabel("Num");
+		JLabel JL3=new JLabel("Number");
 		jpan2.add(JL3);
 		
 		stockNumOut=new JTextField(6);
@@ -239,7 +239,7 @@ public class OutStockPan extends JPanel {
 				//传递一个存储数据的rs  和一个表格   还需要一个表格的 长度
 			int a=Tool.addDataTable(rs, model,8 );
 			if(a==0) {
-				JOptionPane.showMessageDialog(null, "没有查到相关数据", "消息",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No relevant data available", "Message",JOptionPane.WARNING_MESSAGE);
 			}
 				
 			}else {
@@ -300,7 +300,7 @@ public class OutStockPan extends JPanel {
 				
 			int a=Tool.addDataTable(rs, model,8 );
 			if(a==0) {
-				JOptionPane.showMessageDialog(null, "没有查到相关数据", "消息",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No relative data", "Message",JOptionPane.WARNING_MESSAGE);
 			}
 				
 			}
@@ -320,17 +320,17 @@ public class OutStockPan extends JPanel {
 				//直接输入  ID进行删除
 				String num=stockNum.getText();
 				if(num.equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入删除编号", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the deletion ID", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					int a=OutStockDao.dellStockData(num);
 					if(a==0) {
-						JOptionPane.showMessageDialog(null, "请检查输入编号是否存在", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Check the ID", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==1) {
-						JOptionPane.showMessageDialog(null, "删除成功", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Deleted successfully", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					if(a==3) {
-						JOptionPane.showMessageDialog(null, "请检查输入编号是否为数字", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please check if the input number is a number", "Message",JOptionPane.WARNING_MESSAGE);
 					}
 					
 				}
@@ -356,22 +356,22 @@ public class OutStockPan extends JPanel {
 				String ID=null;//价格
 				String user=null;
 				if(stockNum.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "请输入ID编号", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please enter the ID", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					
 					if(cmbSupName.getSelectedIndex()==0) {
 						//则说明没有选择
 						
-						JOptionPane.showMessageDialog(null, "请选择供应商", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
 						
 					}else if(cmbStockName.getSelectedIndex()==0) {
-						JOptionPane.showMessageDialog(null, "请选择子产品", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Please select a product", "Message",JOptionPane.WARNING_MESSAGE);
 					}else if(stockNumOut.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "商品数量不能为空", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "The number of products cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 					}else if(stockPricOut.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "商品价格不能为空", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Product price cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 					}else if(stockUser.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "用户姓名不能为空", "消息",JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "User name cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 						
 						
 					}else{
@@ -386,17 +386,17 @@ public class OutStockPan extends JPanel {
 						//将四个值传入数据库
 						int a=OutStockDao.changeStockData(sup, sun, num, pric,user, ID);
 						if(a==0) {
-							JOptionPane.showMessageDialog(null, "数据未变动", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No change in data", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 						if(a==1) {
-							JOptionPane.showMessageDialog(null, "更改成功", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Change successful", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 						
 						if(a==3) {
-							JOptionPane.showMessageDialog(null, "请检查输入格式", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please check the input format", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 						if(a==4) {
-							JOptionPane.showMessageDialog(null, "库存不足不能进行更改", "消息",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Insufficient inventory to make changes", "Message",JOptionPane.WARNING_MESSAGE);
 						}
 					
 						
