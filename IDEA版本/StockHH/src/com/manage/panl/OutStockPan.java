@@ -99,7 +99,7 @@ public class OutStockPan extends JPanel {
 		jpan2.add(cmbSupName);
 		
 		
-		JLabel JL2=new JLabel("Stock Name");
+		JLabel JL2=new JLabel("Name");
 		jpan2.add(JL2);
 		
 		
@@ -109,7 +109,7 @@ public class OutStockPan extends JPanel {
 		
 		
 		
-		JLabel JL3=new JLabel("Number");
+		JLabel JL3=new JLabel("Num");
 		jpan2.add(JL3);
 		
 		stockNumOut=new JTextField(6);
