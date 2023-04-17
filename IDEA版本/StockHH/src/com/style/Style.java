@@ -6,19 +6,19 @@ public class Style {
 
 	
 	
-	public static Font title;//定义一个标题  就登录界面
-	public static Font account;//账号的样式
-	public static Font accounttext;//登录文本框的样式
-	public static Font ok;//登录按钮的字体样式
+	public static Font title;//Define a title for the login screen
+	public static Font account;//Style of the account
+	public static Font accounttext;//Login text box style
+	public static Font ok;//Font style of login button
 	
 
 	public Style(){
-		//对程序的初始话
+		//Initialization of the program
 		
-		title=new Font("宋体",Font.BOLD,28);//第一个参数 是什么字体，第二个参数 是加粗 ，第三个参数 字体大小
-		account=new Font("华文bai行楷",Font.BOLD,18);//标签
-		accounttext=new Font("宋体",Font.PLAIN,18);//账号框
-		ok=new Font("宋体",Font.BOLD,18);//登录按钮
+		title=new Font("Arial",Font.BOLD,28);//The first parameter is what font, the second parameter is bold, and the third parameter is font size
+		account=new Font("Arial",Font.BOLD,18);//Tags
+		accounttext=new Font("Arial",Font.PLAIN,18);//Account box
+		ok=new Font("Arial",Font.BOLD,18);//Login button
 		
 		
 		
