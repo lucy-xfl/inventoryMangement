@@ -19,67 +19,76 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import com.tool.Tool;
 
 public class inBarChart2 {
-	 ChartPanel frame1;
+
+	ChartPanel frame1;
 	public inBarChart2() {
-		
+		//Retrieve the dataset for the chart
 		CategoryDataset dataset = getDataSet();
-		 JFreeChart chart = ChartFactory.createBarChart3D(
-	            "入库商品数量", // 图表标题
-                "商品种类", // 文件夹轴的显示标签
-                "数量", // 数值轴的显示标签
-                dataset, // 数据集
-                PlotOrientation.VERTICAL, // 图表方向：水平、垂直
-                true,           // 是否显示图例(对于简单的柱状图必须是false)
-                false,          // 是否生成工具
-                false           // 是否生成URL链接
+
+		//Create a new bar chart with 3D effects
+		JFreeChart chart = ChartFactory.createBarChart3D(
+	            "Number of inbound goods", //Chart Title
+                "Product Categories", //x-axis labels
+                "Quantity", //y-axis labels
+                dataset, //Dataset to be plotted
+                PlotOrientation.VERTICAL, //Chart direction: vertical
+                true,//Display legend
+                false,//Do not generate tooltips
+                false//Do not generate URLs
                 );
-		  CategoryPlot plot=chart.getCategoryPlot();//获取图表区域对象
-	      CategoryAxis domainAxis=plot.getDomainAxis();         //水平底部列表
-	      
-	      domainAxis.setLabelFont(new Font("黑体",Font.BOLD,14));         //水平底部标题
-	      domainAxis.setTickLabelFont(new Font("宋体",Font.BOLD,12));  //垂直标题
-	      ValueAxis rangeAxis=plot.getRangeAxis();//获取柱状
-	      
-	      rangeAxis.setLabelFont(new Font("黑体",Font.BOLD,15));
-	      chart.getLegend().setItemFont(new Font("黑体", Font.BOLD, 15));
-	      chart.getTitle().setFont(new Font("宋体",Font.BOLD,20));//设置标题字体
-	      
-	      frame1=new ChartPanel(chart,true);  
+		//get the chart plot
+		CategoryPlot plot=chart.getCategoryPlot();
+		//Get the horizontal axis (X-axis) and set the label font and tick label font
+		CategoryAxis domainAxis=plot.getDomainAxis();//Horizontal bottom list
+		domainAxis.setLabelFont(new Font("bold",Font.BOLD,14));//Horizontal bottom header
+		domainAxis.setTickLabelFont(new Font("times new roman",Font.BOLD,12)); //Vertical Title
+
+		//Get the vertical axis (Y-axis) and set the label font
+		ValueAxis rangeAxis=plot.getRangeAxis();
+		rangeAxis.setLabelFont(new Font("bold",Font.BOLD,15));
+
+		//Set the font for the chart title and legend
+		chart.getLegend().setItemFont(new Font("bold", Font.BOLD, 15));
+		chart.getTitle().setFont(new Font("times new roman",Font.BOLD,20));
+
+		//Create a new ChartPanel to display the chart and set it as visible
+		frame1=new ChartPanel(chart,true);
 	      
 	}
 	
-
+	//A method of getting the data to create the dataset for the bar chart
 	private  CategoryDataset getDataSet() {
 		// TODO Auto-generated method stub
-		
-		//用于读取数据库 
+
+		//Store the data retrieved from the database.
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
-       int i=0;
+        int i=0;//unique column keys for the dataset
+		//SQL query to retrieve top 9 inbound goods by quantity
         String SqlStr= "select * from instock ORDER BY num desc LIMIT 0, 9";
-        ResultSet rs = Tool.showData(SqlStr, null);
+
+		//Create ResultSet object to iterate over the results and accessing the values in each row
+		ResultSet rs = Tool.showData(SqlStr, null);
         try {
+			//Iterate over each row in rs
 			while(rs.next()) {
-				
-				 int num = rs.getInt("num");
-				 String sup=rs.getString("supname");
-				 String sun=rs.getString("stockname");
+				//Get the number of items in stock in rs
+				int num = rs.getInt("num");
+
+				//Get the supplier name and item name from the current row in rs
+				String sup=rs.getString("supname");
+				String sun=rs.getString("stockname");
+				//Add current item to the dataset with the supplier name as the row key, and the item name + a counter variable as the column key
 			   	dataset.addValue(num, sup, sun+i);
 				i++;
-				
-			
-			
-				
 			}
+			// Close the ResultSet for the second SQL query
 			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			// Handle any SQLExceptions
 			e.printStackTrace();
 		}
-        
-        
-     
-       
 
         return dataset;
 	}

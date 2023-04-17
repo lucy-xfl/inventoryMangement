@@ -19,56 +19,73 @@ public class outPieChart {
 	ChartPanel frame1;
 	
 	public  outPieChart() {
-		
-		 DefaultPieDataset data = getDataSet();
-		  JFreeChart chart = ChartFactory.createPieChart3D("支出统计扇形",data,true,false,false);
-		    //设置百分比
+
+		  //Get the data set to be used for the chart
+		  DefaultPieDataset data = getDataSet();
+		  //Create a 3D pie chart with the given title and data set
+		  JFreeChart chart = ChartFactory.createPieChart3D("Expenditure Statistics Fan Chart",data,true,false,false);
+
+		  //Get the plot of the chart
 		  PiePlot pieplot = (PiePlot) chart.getPlot();
-		  DecimalFormat df = new DecimalFormat("0.00%");//获得一个DecimalFormat对象，主要是设置小数问题
-		  NumberFormat nf = NumberFormat.getNumberInstance();//获得一个NumberFormat对象
-		  StandardPieSectionLabelGenerator sp1 = new StandardPieSectionLabelGenerator("{0}  {2}", nf, df);//获得StandardPieSectionLabelGenerator对象
-		  pieplot.setLabelGenerator(sp1);//设置饼图显示百分比
+
+		  //Set the format of the percentage values displayed on the chart
+		  DecimalFormat df = new DecimalFormat("0.00%");
+		  NumberFormat nf = NumberFormat.getNumberInstance();
+		  StandardPieSectionLabelGenerator sp1 = new StandardPieSectionLabelGenerator("{0}  {2}", nf, df);
+		  pieplot.setLabelGenerator(sp1);//Set pie chart to show percentage
 		  
 		  
-		   pieplot.setNoDataMessage("无数据显示");
-		   pieplot.setCircular(false);
-		  pieplot.setLabelGap(0.02D);
+		  pieplot.setNoDataMessage("No data available");//Set the message to display when no data is available
+		  pieplot.setCircular(false);//Set the chart is not circular
+		  pieplot.setLabelGap(0.02D);//Set the gap between the labels and the plot
 		  
 		  
-		  pieplot.setIgnoreNullValues(true);//设置不显示空值
-	      pieplot.setIgnoreZeroValues(true);//设置不显示负值
+		  pieplot.setIgnoreNullValues(true);//Set not to display null values
+	      pieplot.setIgnoreZeroValues(true);//Set not to display negative values
+
+		  //Create a chart panel with the chart and set it to visible
 	      frame1=new ChartPanel (chart,true);
-	      chart.getTitle().setFont(new Font("宋体",Font.BOLD,20));//设置标题字体
-	      PiePlot piePlot= (PiePlot) chart.getPlot();//获取图表区域对象
-	      piePlot.setLabelFont(new Font("宋体",Font.BOLD,10));//解决乱码
-	      chart.getLegend().setItemFont(new Font("黑体",Font.BOLD,10));
+
+		  //Set the font of the chart title
+	      chart.getTitle().setFont(new Font("times new roman",Font.BOLD,20));
+
+		  //Get the chart area and set the font of the pie plot labels
+	      PiePlot piePlot= (PiePlot) chart.getPlot();
+	      piePlot.setLabelFont(new Font("times new roman",Font.BOLD,10));
+
+		  //Set the font of the legend items
+	      chart.getLegend().setItemFont(new Font("bold",Font.BOLD,10));
 		
 	}
 
 	private DefaultPieDataset getDataSet() {
 		// TODO Auto-generated method stub
-		//所以对数据一个操作都在这个界面写
 		
 		 DefaultPieDataset dataset =new   DefaultPieDataset();
-		 ResultSet rs = Tool.showData("select DISTINCT supname from instock", null);//查看
+		 //A SQL query is executed to get distinct supplier names from 'outstock' table and the result is stored in 'rs' ResultSet
+		 ResultSet rs = Tool.showData("select DISTINCT supname from outstock", null);
 		 
 		 try {
-			 
+			 //iterate over the ResultSet object 'rs'
 			 while(rs.next()) {
-				 
-				 
-	
-				 String supname=rs.getString("supname");//获取到供应商的数据
-				 String sqlstr="select ifnull(supname,?) ,ifnull(sum(num*pric),0)-(select sum(num*pric)from instock where supname=?) from outstock where supname=?";
-				 String data[]=new String[3];
+				 // get the supplier name from the ResultSet
+				String supname=rs.getString("supname");
+
+				//Construct a SQL statement to calculate the total cost for the supplier
+				String sqlstr="select ifnull(supname,?) ,ifnull(sum(num*pric),0)-(select sum(num*pric)from instock where supname=?) from outstock where supname=?";
+				String data[]=new String[3];
 				data[0]=supname;
 				data[1]=supname;
 				data[2]=supname;
+
+				//Execute the SQL statement using the 'showData' method from the 'Tool' class and store the result in 'rs1'
 				ResultSet rs1 = Tool.showData(sqlstr, data);
 				while(rs1.next()) {
+					//Get the supplier name and total cost from the ResultSet
 					String supname1=rs1.getString(1);
 					Float sumpric=rs1.getFloat(2);
-				
+
+					//if the total cost is less than or equal to zero, add a new data item to the pie chart with the supplier name and the absolute value of the total cost
 					if(sumpric<=0) {
 						sumpric=-sumpric;
 						dataset.setValue(supname1,sumpric);
@@ -93,9 +110,5 @@ public class outPieChart {
 	    	return frame1;
 	    	
 	    }
-	
-	
-	
-	
 
 }
