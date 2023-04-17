@@ -21,29 +21,37 @@ import com.tool.Tool;
 public class outBarChart2 {
 	 ChartPanel frame1;
 	public outBarChart2() {
-		
+		//Retrieve the dataset for the chart
 		CategoryDataset dataset = getDataSet();
+
+		 //Create a new bar chart with 3D effects
 		 JFreeChart chart = ChartFactory.createBarChart3D(
-	            "入库商品数量", // 图表标题
-                "商品种类", // 文件夹轴的显示标签
-                "数量", // 数值轴的显示标签
-                dataset, // 数据集
-                PlotOrientation.VERTICAL, // 图表方向：水平、垂直
-                true,           // 是否显示图例(对于简单的柱状图必须是false)
-                false,          // 是否生成工具
-                false           // 是否生成URL链接
+				 "Number of outbound goods", // Chart Title
+                "Product Categories", //x-axis labels
+                "Quantity", //y-axis labels
+                dataset, //Dataset to be plotted
+                PlotOrientation.VERTICAL,//Chart direction: vertical
+                true,//Display legend
+                false,//Do not generate tooltips
+                false //Do not generate URLs
                 );
-		  CategoryPlot plot=chart.getCategoryPlot();//获取图表区域对象
-	      CategoryAxis domainAxis=plot.getDomainAxis();         //水平底部列表
-	      
-	      domainAxis.setLabelFont(new Font("黑体",Font.BOLD,14));         //水平底部标题
-	      domainAxis.setTickLabelFont(new Font("宋体",Font.BOLD,12));  //垂直标题
-	      ValueAxis rangeAxis=plot.getRangeAxis();//获取柱状
-	      
-	      rangeAxis.setLabelFont(new Font("黑体",Font.BOLD,15));
-	      chart.getLegend().setItemFont(new Font("黑体", Font.BOLD, 15));
-	      chart.getTitle().setFont(new Font("宋体",Font.BOLD,20));//设置标题字体
-	      
+		  //Get the chart plot
+		  CategoryPlot plot=chart.getCategoryPlot();
+
+		  //Get the horizontal axis (X-axis) and set the label font and tick label font
+	      CategoryAxis domainAxis=plot.getDomainAxis();
+	      domainAxis.setLabelFont(new Font("bold",Font.BOLD,14));
+	      domainAxis.setTickLabelFont(new Font("times new roman",Font.BOLD,12));
+
+		  //Get the vertical axis (Y-axis) and set the label font
+	      ValueAxis rangeAxis=plot.getRangeAxis();
+	      rangeAxis.setLabelFont(new Font("bold",Font.BOLD,15));
+
+		  //Set the font for the chart title and legend
+	      chart.getLegend().setItemFont(new Font("bold", Font.BOLD, 15));
+	      chart.getTitle().setFont(new Font("times new roman",Font.BOLD,20));
+
+		  //Create a new ChartPanel to display the chart and set it as visible
 	      frame1=new ChartPanel(chart,true);  
 	      
 	}
@@ -51,35 +59,35 @@ public class outBarChart2 {
 
 	private  CategoryDataset getDataSet() {
 		// TODO Auto-generated method stub
-		
-		//用于读取数据库 
+
+		//Create a new DefaultCategoryDataset object to store the data
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
-       int i=0;
+        int i=0;//unique column keys for the dataset
+		//SQL query to retrieve the top 9 rows of data from the 'outstock' table, ordered by the 'num' column in descending order
         String SqlStr= "select * from outstock ORDER BY num desc LIMIT 0, 9";
-        ResultSet rs = Tool.showData(SqlStr, null);
+
+		ResultSet rs = Tool.showData(SqlStr, null);
         try {
+			//Iterate over each row in rs
 			while(rs.next()) {
-				
-				 int num = rs.getInt("num");
-				 String sup=rs.getString("supname");
-				 String sun=rs.getString("stockname");
+
+				//Get the values of the 'num', 'supname', and 'stockname' columns
+				int num = rs.getInt("num");
+				String sup=rs.getString("supname");
+				String sun=rs.getString("stockname");
+
+				//Add the data to the dataset, using the supplier name as the row key, 'stockname+i' as the column key, and the 'num' value as the data value
 			   	dataset.addValue(num, sup, sun+i);
 				i++;
-				
-			
-			
-				
+
 			}
+			//Close rs
 			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        
-     
-       
 
         return dataset;
 	}

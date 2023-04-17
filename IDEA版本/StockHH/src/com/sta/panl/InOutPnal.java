@@ -20,121 +20,145 @@ import com.sta.InOutTimeSeriesChart2;
 
 public class InOutPnal {
 
-	final int WIDTH=730;//设置顶层框架的宽度
-	final int HEIGHT=50;//设置顶层框架的高度
+	final int WIDTH=730;//Set the width of the top-level frame
+	final int HEIGHT=50;//Set the height of the top level frame
 	JPanel  JPM=new JPanel();
-	public static JComboBox cmbSupName;//定义一个下拉框
+
+	//Define a drop-down box
+	public static JComboBox cmbSupName;
+
 	public  InOutPnal(int x,int y,int width,int height) {
-		
-		JPM.setBounds(x, y, width, height-60);
+		//Set the location and size
+		JPM.setBounds(x, y, width, height-80);
 		init();
 	}
 	
 	
 	void init() {
-		
+		//Create the needed panel, labels and drop-down box
 		JPanel JP1=new JPanel();
-		JP1.setLayout(new FlowLayout(FlowLayout.CENTER,20,100));//居中
-		JLabel JL1=new JLabel("供应商");
+		JP1.setLayout(new FlowLayout(FlowLayout.CENTER,10,50));
+		JLabel JL1=new JLabel("Suppliers");
 		JP1.add(JL1);
-		cmbSupName = new JComboBox();    //创建JComboBox
-		cmbSupName.addItem("--请选择供应商--");
+		cmbSupName = new JComboBox();
+		cmbSupName.addItem("--Please select a supplier--");
 		JP1.add(cmbSupName);
-		
-		JLabel JL2=new JLabel("仓库状态");
-		JP1.add(JL2);
-		
 
-		
-		JRadioButton jrb1=new JRadioButton("入库");//定义两个单选按钮
-		JRadioButton jrb2=new JRadioButton("出库");
-		jrb1.setSelected(true);//设置默认选择入库
+		JLabel JL2=new JLabel("Warehouse Status");
+		JP1.add(JL2);
+
+
+
+
+
+		//Define two radio buttons
+		JRadioButton jrb1=new JRadioButton("Inbound");
+		JRadioButton jrb2=new JRadioButton("Outbound");
+
+		//Set default selection inbound
+		jrb1.setSelected(true);
+
+		//Create ButtonGroup
 		ButtonGroup bg=new ButtonGroup();
-		bg.add(jrb1);			//必须要把单选框放入按钮组作用域中才能实现单选！！！！
-		bg.add(jrb2);//把单选按钮放到一个组里
+
+		//Add JRadioButtons to ButtonGroup, and add them all to the panel
+		bg.add(jrb1);
+		bg.add(jrb2);
 		JP1.add(jrb1);
 		JP1.add(jrb2);
 		
 		
 
-		//增加两个按钮
-		JButton JB1=new JButton("查看最近三个月");
+		//Add two buttons
+		JButton JB1=new JButton("View the last three months");
 		JP1.add(JB1);
 		
-		JButton JB2=new JButton("查看历来数据");
+		JButton JB2=new JButton("View historical data");
 		JP1.add(JB2);
-		
-		JPM.setLayout(new GridLayout(2,2,10,10));//最外层的组件设置成 这个网格布局
-		
-		//JP1.setBorder(BorderFactory.createTitledBorder("查看统计图"));
+
+		//Set the outermost component as grid layout
+		JPM.setLayout(new GridLayout(2,2,10,10));
+
 		JPM.add(JP1);
-		JPM.add(new InOutTimeSeriesChart("","instock").getChartPanel());//第一个参数是查询那个供应商，第二个参数 是入库
+
+		//The first variable is suppliers, the second is inbound
+		JPM.add(new InOutTimeSeriesChart("","instock").getChartPanel());
+
 		//this.add(new outBarChart2().getChartPanel());
 		JPM.setBorder(BorderFactory.createTitledBorder(""));
-		JP1.setBorder(BorderFactory.createTitledBorder("统计数据"));
-		
-		
+		JP1.setBorder(BorderFactory.createTitledBorder("Statistical data"));
+
+		//add listener to jb2
 		JB2.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				//读取所有数据 一个运营商的所有的  数据  不是说所有运营
-				
+				//Read all the data of a carrier
 				if(cmbSupName.getSelectedIndex()==0){
-					JOptionPane.showMessageDialog(null, "请选择运营商", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a carrier", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
-					
-					String sup=(String) cmbSupName.getSelectedItem();//获取选择的标题  获取是哪个运营商
-					String sqlstr;//用来标志是入库还是出库
-					if(jrb1.isSelected()) {//jb1是入库单选按钮
-						sqlstr="instock";//数据库的名字 传入数据库名字
+					//get the name of selected supplier
+					String sup=(String) cmbSupName.getSelectedItem();
+
+					//used to target the inbound or outbound
+					String sqlstr;
+
+					//named the database according to the choice of inbound(jrb1) or outbound(jrb2)
+					if(jrb1.isSelected()) {
+						sqlstr="instock";
 					}else {
-						sqlstr="outstock";//出库的数据库名字
+						sqlstr="outstock";
 						
 					}
 					
 					JPM.remove(1);
-					SwingUtilities.updateComponentTreeUI(JPM);//添加或删除组件后,更新窗口
+
+					//Update window after adding or removing components
+					SwingUtilities.updateComponentTreeUI(JPM);
 					JPM.add(new InOutTimeSeriesChart(sup, sqlstr).getChartPanel());
-					
-	
+
 				}
 			}
 			
 		});
 		
-		
+		//add listener to jb1
 		JB1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-				//读取所有数据 一个运营商的所有的  数据  不是说所有运营
-				
+
+				//Read all the data of a carrier
 				if(cmbSupName.getSelectedIndex()==0){
-					JOptionPane.showMessageDialog(null, "请选择运营商", "消息",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Please select a carrier", "message",JOptionPane.WARNING_MESSAGE);
 				}else {
-					
-					String sup=(String) cmbSupName.getSelectedItem();//获取选择的标题  获取是哪个运营商
-					String sqlstr;//用来标志是入库还是出库
-					if(jrb1.isSelected()) {//jb1是入库单选按钮
-						sqlstr="instock";//数据库的名字 传入数据库名字
+
+					//get the name of selected supplier
+					String sup=(String) cmbSupName.getSelectedItem();
+					//used to target the inbound or outbound
+					String sqlstr;
+
+					//named the database according to the choice of inbound(jrb1) or outbound(jrb2)
+					if(jrb1.isSelected()) {
+						sqlstr="instock";
 					}else {
-						sqlstr="outstock";//出库的数据库名字
-						
+						sqlstr="outstock";
 					}
-					
 					JPM.remove(1);
-					SwingUtilities.updateComponentTreeUI(JPM);//添加或删除组件后,更新窗口
+
+					//Update window after adding or removing components
+					SwingUtilities.updateComponentTreeUI(JPM);
+
+
 					JPM.add(new InOutTimeSeriesChart2(sup, sqlstr).getChartPanel());
-					
+
 
 				}
 			}
-			
+
 		});
 		
 		

@@ -14,19 +14,18 @@ import com.sta.outBarChart2;
 import com.sta.outPieChart;
 
 public class InComeStic extends JPanel{
-	final int WIDTH=730;//设置顶层框架的宽度
-	final int HEIGHT=50;//设置顶层框架的高度
-	
-	
-	
+	final int WIDTH=730;//Set the width of the top-level frame
+	final int HEIGHT=50;//Set the height of the top level frame
+
+
 	public InComeStic(int x,int y,int width,int height) {
-		//第一个 w  h 是表示所在位置 第二个表示 //设置他的大小
+		//Set the location and size
 		this.setBounds(x, y, width, height-60);
 		init();
 	}
-	
 
-	
+
+	//initialize the layout and Pie-chart
 	void init() {
 		
 		this.setLayout(new GridLayout(2,2,10,10));
@@ -35,18 +34,17 @@ public class InComeStic extends JPanel{
 		 
 		
 	}
+	//method of removing all components from the container and redraw the component
 	public void rep() {
 		this.removeAll();
 		this.repaint();
 	}
+	//Add inbound and outbound Pie-chart and repaint method
 	public void rep1() {
 
 		this.add(new InPieChart().getChartPanel());
 		this.add(new outPieChart().getChartPanel());
 		this.repaint();
 	}
-
-
-
 
 }

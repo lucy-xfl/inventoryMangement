@@ -26,172 +26,182 @@ public class InOutTimeSeriesChart {
 
 	ChartPanel frame1;
 	
-	public InOutTimeSeriesChart(String supname,String sto) {//传递过来的是supnam 和判读入库 出库的字符串
-		
+	public InOutTimeSeriesChart(String supname,String sto) {
+		//The string that is passed is the suppliers' name and the string to determine if the reading is inbound or outbound
+		//create XYDataset object to generate data
 		XYDataset xydataset = createDataset(supname,sto);
-		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart("仓库流动曲线图", "日期", "数量",xydataset, true, true, true);
+
+		//create JFreeChart object and set the parameters in the object
+		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart("Warehouse Flow Curve Chart", "Date", "Quantity",xydataset, true, true, true);
+
+		//Display the data of jfreechart
 		XYPlot xyplot = (XYPlot) jfreechart.getPlot();
-		
+
+		//Get the horizontal axis (X-axis) and set the label font, tick label font and date format
 		DateAxis dateaxis = (DateAxis) xyplot.getDomainAxis();
-        dateaxis.setDateFormatOverride(new SimpleDateFormat("yyyy-MM-dd"));
-        frame1=new ChartPanel(jfreechart,true);
-        
-        dateaxis.setLabelFont(new Font("黑体",Font.BOLD,14));         //水平底部标题
-        dateaxis.setTickLabelFont(new Font("宋体",Font.BOLD,12));  //垂直标题
-        ValueAxis rangeAxis=xyplot.getRangeAxis();//获取柱状
-        rangeAxis.setLabelFont(new Font("黑体",Font.BOLD,15));
-        jfreechart.getLegend().setItemFont(new Font("黑体", Font.BOLD, 15));
-        jfreechart.getTitle().setFont(new Font("宋体",Font.BOLD,20));//设置标题字体
+		dateaxis.setLabelFont(new Font("bold",Font.BOLD,14));
+		dateaxis.setTickLabelFont(new Font("times new roman",Font.BOLD,12));
+		dateaxis.setDateFormatOverride(new SimpleDateFormat("yyyy-MM-dd"));
+
+		//Create a new ChartPanel to display the jfreechart and set it as visible
+		frame1 = new ChartPanel(jfreechart,true);
+
+		//Get the vertical axis (Y-axis) and set the label font
+		ValueAxis rangeAxis=xyplot.getRangeAxis();
+        rangeAxis.setLabelFont(new Font("bold",Font.BOLD,15));
+
+		//set the font for the jfreechart's legend and title, respectively
+		jfreechart.getLegend().setItemFont(new Font("bold", Font.BOLD, 15));
+        jfreechart.getTitle().setFont(new Font("times new roman",Font.BOLD,20));
         
 		
 	}
 
-	private XYDataset createDataset(String supname, String sto) {//第一个参数传入一个 供应商的名字 ，传入数据库的名字
-		// TODO Auto-generated method stub
-		 String sqlstr="select DISTINCT stockname from "+sto +" where supname=? ";//根据传入不同参数来查找不同的库  查找商品的名称
+	private XYDataset createDataset(String supname, String sto) {
+		 // TODO Auto-generated method stub
+		 //SQL query that selects distinct stock names from 'sto' where the supplier name is equal to the 'supname'
+		 String sqlstr="select DISTINCT stockname from "+sto +" where supname=? ";
+
+		 //Define a string array to hold the supplier name argument for the SQL query, and execute the sql query and store the result in rs
 		 String data[]=new String[1];
 		 data[0]=supname;
 		 ResultSet rs = Tool.showData(sqlstr, data);
-		 TimeSeriesCollection timeseriescollection = new TimeSeriesCollection();//初始曲线图
-		
+
+		 //Create initial Curve Chart
+		 TimeSeriesCollection timeseriescollection = new TimeSeriesCollection();
+
 		 try {
-			 
+
 			while(rs.next()) {
-				String sun=rs.getString(1);//读取某个供应商的产品名称
+				String sun=rs.getString(1);//Read the product name of a supplier
 				TimeSeries timeseries = new TimeSeries(sun,
-			                org.jfree.data.time.Day.class);//添加曲线名称和曲线  
-				//向曲线添加数据
+			                org.jfree.data.time.Day.class);
+				//Define a new SQL query string to get the earliest and latest date for the given supplier and stockname
 				String data1[]=new String[1];
 				data1[0]=supname;
+				String afterData;
+				String beforeData;
+
+				 //Get the latest date for the given supplier and stockname from the instock or outstock table
 				 if(sto.equals("instock")) {
-					 sqlstr="select intime from instock   where supname=? ORDER BY intime desc LIMIT 0 , 1";//读取最早的时间
+					 sqlstr="select intime from instock   where supname=? ORDER BY intime desc LIMIT 0 , 1";
 				 }else {
-					 sqlstr="select outtime from outstock   where supname=? ORDER BY outtime desc LIMIT 0 , 1";//读取最早的时间
+					 sqlstr="select outtime from outstock   where supname=? ORDER BY outtime desc LIMIT 0 , 1";
 				 }
-				 // 查找最早时间和最晚时间
+
 				 ResultSet rs1 = Tool.showData(sqlstr, data1);
-				 String afterData;//最晚时间
-				 String beforeData;//最早时间
+
 				 if(rs1.next()) {
-					 
 					 afterData= rs1.getString(1);
-					 
 				 }else {
-		
 					 afterData="2019-01-08 00:00:00";
 				 }
 				 rs1.close();
-				 //查找最早时间2018 
+
+				 //Get the earliest date for the given supplier and stockname from the instock or outstock table
 				 if(sto.equals("instock")) {
-					 sqlstr="select intime from instock   where supname=? ORDER BY intime asc LIMIT 0 , 1";//读取最早的时间
+					 sqlstr="select intime from instock   where supname=? ORDER BY intime asc LIMIT 0 , 1";
 				 }else {
-					 sqlstr="select outtime from outstock   where supname=? ORDER BY outtime asc LIMIT 0 , 1";//读取最早的时间
+					 sqlstr="select outtime from outstock   where supname=? ORDER BY outtime asc LIMIT 0 , 1";
 				 }
-				 
 				 rs1 = Tool.showData(sqlstr, data1);
 				 if(rs1.next()) {
-					 
 					 beforeData= rs1.getString(1);
-					 
 				 }else {
-		
 					 beforeData="2019-01-08 00:00:00";
 				 }
 				 rs1.close();
-				 //最早的时间和最晚的时间都获取到了
-			
+
+				 //Get the date range between the earliest and latest dates
 				 beforeData= getSpecifiedDayAfter(getSpecifiedDayBefore(beforeData));
 				 afterData= getSpecifiedDayAfter(getSpecifiedDayBefore(afterData));
-			
-				
-				 // 2021 8 8 0时0分0秒    2021 8 8 23 59 59 
+
+
+				 //Loop through the date range and get the data for the given supplier, stockname and date from the instock or outstock table
 				 while(!afterData.equals(beforeData)) {
-					 
+
+					 //Set the SQL query string based on the stock type (instock or outstock)
 					 if(sto.equals("instock")) {
 						 sqlstr="select stockname ,sum(num) from instock where  supname=? and intime>=? and intime<=? and   stockname=?";
 					 }else {
 						 sqlstr="select stockname ,sum(num) from outstock where  supname=? and outtime>=? and outtime<=? and   stockname=?";
 					 }
-					 
+
+					 //Set the values to be passed in as parameters to the SQL query
 					 String[] dasun=new String [4];
-					 
 					 dasun[0]=supname;
 					 dasun[1]=beforeData;
 					 dasun[2]=afterData;
 					 dasun[3]=rs.getString("stockname");
+
+					 //Execute the SQL query and loop through the dasun
 					 rs1=Tool.showData(sqlstr,dasun);
 					 	while(rs1.next()) {
 						 try {
-							 SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-					           Date date = sf.parse(beforeData);
-					          Calendar calendar = Calendar.getInstance();
-					            calendar.setTime(date);
-					           
+							//Parse the date in the correct format and get year, month and day
+							SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+					        Date date = sf.parse(beforeData);
+					        Calendar calendar = Calendar.getInstance();
+					        calendar.setTime(date);
 					        int year=   calendar.get(Calendar.YEAR);
 					        int month= calendar.get(Calendar.MONTH) + 1;
 					        int day1=  calendar.get(Calendar.DAY_OF_MONTH);
+
+							//Create a Day object using the year, month and day and add it to the TimeSeries object with the corresponding value
 					        Day day = new Day(day1,month,year);
 					        timeseries.add(day, rs1.getFloat(2));
-					        
-					        
-			
 					        } catch (ParseException e) {
 					            e.printStackTrace();
 					        }
 				
 					 }
+					 //Close the result set and move the date forward by one day
 					 rs1.close();
-					 beforeData= getSpecifiedDayAfter(beforeData);//天数向后移动一天
-
-					 
+					 beforeData= getSpecifiedDayAfter(beforeData);
 				 }
-				 
+
+				//Check if the last date in the range still needs to be processed
 				 if(afterData.equals(beforeData)) {
-					 
+					 //Set the SQL query string based on the stock type (instock or outstock)
 					 if(sto.equals("instock")) {
 						 sqlstr="select stockname ,sum(num) from instock where  supname=? and intime>=? and intime<=? and   stockname=?";
 					 }else {
 						 sqlstr="select stockname ,sum(num) from outstock where  supname=? and outtime>=? and outtime<=? and   stockname=?";
 					 }
-					 
+
+					 //Set the values to be passed in as parameters to the SQL query
 					 String[] dasun=new String [4];
-					 
 					 dasun[0]=supname;
 					 dasun[1]=beforeData;
 					 dasun[2]=afterData;
 					 dasun[3]=rs.getString("stockname");
+
+					 //Execute the SQL query and loop through the dasun
 					 rs1=Tool.showData(sqlstr,dasun);
+
 					 	while(rs1.next()) {
+							//Parse the date in the correct format and get year, month and day
 						 try {
-							 SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-					           Date date = sf.parse(beforeData);
-					          Calendar calendar = Calendar.getInstance();
-					            calendar.setTime(date);
-					           
-					        int year=   calendar.get(Calendar.YEAR);
-					        int month= calendar.get(Calendar.MONTH) + 1;
-					        int day1=  calendar.get(Calendar.DAY_OF_MONTH);
+							SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+					        Date date = sf.parse(beforeData);
+					        Calendar calendar = Calendar.getInstance();
+					        calendar.setTime(date);
+					        int year = calendar.get(Calendar.YEAR);
+					        int month = calendar.get(Calendar.MONTH) + 1;
+					        int day1 =  calendar.get(Calendar.DAY_OF_MONTH);
+							//Create a Day object using the year, month and day and add it to the TimeSeries object with the corresponding value
 					        Day day = new Day(day1,month,year);
 					        timeseries.add(day, rs1.getFloat(2));
-					        
-					        
-			
+
 					        } catch (ParseException e) {
 					            e.printStackTrace();
 					        }
 				
 					 }
 					 rs1.close();
-
-					 
 				 }
 				 timeseriescollection.addSeries(timeseries);
 			 }
-			
-			
-			
-			
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -202,41 +212,61 @@ public class InOutTimeSeriesChart {
 		 return timeseriescollection;
 	}
 	
-	  public ChartPanel getChartPanel(){
+	public ChartPanel getChartPanel(){
 	    	return frame1;
 	    	
 	    }
-	  public static String getSpecifiedDayAfter(String specifiedDay) {
+
+
+	//A method of looking for the day after
+	public static String getSpecifiedDayAfter(String specifiedDay) {
+			//Creating an instance of the Calendar class and declare the date variable and initialize it
 	        Calendar c = Calendar.getInstance();
 	        Date date = null;
+
 	        try {
+				//Parse the 'specifiedDay' to a Date object using SimpleDateFormat with pattern "yy-MM-dd"
 	            date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
-	        } catch (ParseException e) {
+	        }
+			//If any error, print the stack trace
+			catch (ParseException e) {
 	            e.printStackTrace();
 	        }
+			//Set time to the date
 	        c.setTime(date);
+			//Get the day of the month and set the calendar instance's day of the month to the next day.
 	        int day = c.get(Calendar.DATE);
 	        c.set(Calendar.DATE, day + 1);
-	 
+
+	 		//Format the updated calendar instance's time to the pattern "yyyy-MM-dd".
 	        String dayAfter = new SimpleDateFormat("yyyy-MM-dd")
 	                .format(c.getTime());
 	        return dayAfter;
-	    }  
-	  //查找前一天的
-	  public static String getSpecifiedDayBefore(String specifiedDay) {
+	    }
+
+
+	//A method of looking for the day before
+	public static String getSpecifiedDayBefore(String specifiedDay) {
+			//Creating an instance of the Calendar class and declare the date variable and initialize it
 	        Calendar c = Calendar.getInstance();
 	        Date date = null;
 	        try {
+				//Parse the 'specifiedDay' to a Date object using SimpleDateFormat with pattern "yy-MM-dd"
 	            date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
 	        } catch (ParseException e) {
 	            e.printStackTrace();
 	        }
+			//Set time to the date
 	        c.setTime(date);
+			//Get the day of the month from the calendar instance
 	        int day = c.get(Calendar.DATE);
+
+			//Set the calendar instance's day of the month to the previous day
 	        c.set(Calendar.DATE, day - 1);
-	 
-	        String dayAfter = new SimpleDateFormat("yyyy-MM-dd")
+
+			//Format the updated calendar instance's time to the pattern "yyyy-MM-dd"
+	        String dayBefore = new SimpleDateFormat("yyyy-MM-dd")
 	                .format(c.getTime());
-	        return dayAfter;
+	        return dayBefore;
 	    }
 }

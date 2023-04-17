@@ -21,7 +21,7 @@ public class inBarPanl extends JPanel{
 		this.setBounds(x, y, width, height-60);
 		init();
 	}
-	
+
 
 	//initialize the layout and barchart
 	void init() {
@@ -32,20 +32,17 @@ public class inBarPanl extends JPanel{
 		
 		
 	}
+
 	//method of removing all components from the container and redraw the component
 	public void rep() {
 		this.removeAll();
 		this.repaint();
 	}
-	//adding barchart and repainting
+	//Add barchart and repaint
 	public void rep1() {
 
 		this.add(new inBarChart().getChartPanel());
 		this.add(new inBarChart2().getChartPanel());
 		this.repaint();
 	}
-
-
-
-
 }
