@@ -11,7 +11,7 @@ public class DBUtil {
 	public DBUtil(String account ,String password,String database){
 		//Database account, database password, database name
 		
-		//Connection drive
+		//Connection Drive
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("Loaded driver successfully");

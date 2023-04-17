@@ -16,7 +16,7 @@ public class Style {
 		//Initialization of the program
 		
 		title=new Font("Arial",Font.BOLD,28);//The first parameter is what font, the second parameter is bold, and the third parameter is font size
-		account=new Font("Serif",Font.BOLD,18);//Tags
+		account=new Font("Arial",Font.BOLD,18);//Tags
 		accounttext=new Font("Arial",Font.PLAIN,18);//Account box
 		ok=new Font("Arial",Font.BOLD,18);//Login button
 		

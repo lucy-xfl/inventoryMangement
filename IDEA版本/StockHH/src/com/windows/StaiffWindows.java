@@ -122,18 +122,7 @@ public class StaiffWindows {
 			}
 			
 		});
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		
-		
-		
+
 		
 		
 		

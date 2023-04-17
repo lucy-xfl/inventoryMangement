@@ -18,7 +18,7 @@ public class Tool {
 	//Set window centering
 	public static void setWindowPosCenter(int WIDTH,int HEIGHT,JFrame jframe) {
 		
-		Toolkit kit =Toolkit.getDefaultToolkit();//Get object size	//Set window position
+		Toolkit kit =Toolkit.getDefaultToolkit();//Get object size	Set window position
 		Dimension screenSize=kit.getScreenSize();
 		int width=screenSize.width;
 		int height=screenSize.height;//Get screen height and width

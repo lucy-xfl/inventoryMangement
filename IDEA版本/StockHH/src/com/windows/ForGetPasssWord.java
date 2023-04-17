@@ -405,10 +405,10 @@ public class ForGetPasssWord {
 		
 		
 		
-		jpanel_1.add(jpanel_2);//盘子二房标题
+		jpanel_1.add(jpanel_2);//put title in JPanel2
 		jpanel_1.add(jpanel_3);
 		jpanel_1.add(bgimg);
-		jframe.add(jpanel_1);//盘子一房北京
+		jframe.add(jpanel_1);//put background in JPanel1
 		
 		
 

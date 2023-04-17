@@ -36,7 +36,6 @@ public class DellStaffWindows {
 	
 	void init() {
 		
-		
 		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);//To center the window
 		jframe.setTitle("Delete staff accounts");
 		

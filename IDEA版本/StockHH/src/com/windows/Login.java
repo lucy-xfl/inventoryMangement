@@ -48,7 +48,6 @@ public class Login {
 
 	void init() {
 
-	//	jframe.setIconImage(new ImageIcon("src/img/icons8-warehouse-100.png").getImage());
 		//Set title
 		
 		jframe.setTitle(title);
@@ -100,21 +99,9 @@ public class Login {
 		jtextfield1=new JPasswordField(10);
 		jtextfield1.setFont(style.accounttext);
 		jpnel2.add(jtextfield1);
+
 		
-		
-		//JLabel AAA=new JLabel("            ");
-		//jpnel2.add(AAA);
-		//Add two radio boxes
-		//JCheckBox JC1 = new JCheckBox("Save password");//
-		//JC1.setOpaque(false);
-		//jpnel2.add(JC1);
-		//JCheckBox JC2 = new JCheckBox("Automatic Login");//
-		//jpnel2.add(JC2);
-		//JC2.setOpaque(false);
-		
-		
-		
-		
+
 		// Login button
 		JButton jbutton=new JButton("Secure Login");
 		jbutton.setFont(style.ok);

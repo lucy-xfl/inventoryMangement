@@ -122,9 +122,7 @@ public class ChangOwnMeg {
 			
 		});
 		
-		
-		
-		
+
 		
 		
 	}

@@ -14,12 +14,8 @@ public class StoreSystem {
 		
 		DBUtil dbutil=new DBUtil("root","czy200331","storemanage");//Database account, database password, database name
 		Login login=new Login("Inventory Management System");
-		
-		//StaiffWindows s=new StaiffWindows();
-		
-		
-		
-		//DBUtil dbutil=new DBUtil("root","root","storemanage");
+
+
 		
 		
 	}

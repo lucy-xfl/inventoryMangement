@@ -58,8 +58,7 @@ public class MangePeopleWindows {
 		jpanel1.setBounds(5, 5, 160, HEIGHT-10);
 		
 		jpanel1.setLayout(new FlowLayout(FlowLayout.CENTER));
-	
-		
+
 
 		//Add a menu bar to put account management and add suppliers
 		JMenuBar menubar = new JMenuBar();//Create a menu bar
@@ -76,23 +75,20 @@ public class MangePeopleWindows {
 		JMenuItem item2_1 = new JMenuItem("Change Staff Account Information");
 		//menu1.add(item2_1);
 	
-		 
-		 
-		
+
 		
 		menubar.add(menu);//Put the menu in the menu bar
 	//	menubar.add(menu1);
 		jframe.setJMenuBar(menubar);
 	
-		
-		
+
 		JMenu menu2 = new JMenu("System");
 		JMenuItem item2_2 = new JMenuItem("Deregister",new  ImageIcon("src/img/it1.png"));
 		JMenuItem item2_3 = new JMenuItem("Logout",new  ImageIcon("src/img/it2.png"));
 		 menu2.add(item2_2);
 		 menu2.add(item2_3);
 		 menubar.add(menu2);
-		 //Deregister
+		 //Deregister function
 		 item2_2.addActionListener(new ActionListener() {
 
 				@Override
@@ -106,7 +102,7 @@ public class MangePeopleWindows {
 				}
 				
 			});
-		 //Logout
+		 //Logout function
 		 item2_3.addActionListener(new ActionListener() {
 
 				@Override
