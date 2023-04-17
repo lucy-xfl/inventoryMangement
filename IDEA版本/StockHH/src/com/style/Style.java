@@ -19,7 +19,7 @@ public class Style {
 		account=new Font("Arial",Font.BOLD,18);//Tags
 		accounttext=new Font("Arial",Font.PLAIN,18);//Account box
 		ok=new Font("Arial",Font.BOLD,18);//Login button
-		
+
 	}
 	
 }
