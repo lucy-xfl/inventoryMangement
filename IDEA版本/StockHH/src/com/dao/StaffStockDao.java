@@ -16,14 +16,14 @@ import com.until.DBUtil;
 
 public class StaffStockDao {
 	public static Connection con=DBUtil.conn;
-	//获取订单的时间 
-	//获取系统的时间 
-	//进行对比 如果超过3分钟则不允许操作   删除和更改都需要  在3分钟之内
+	//Time to get the order
+	//Get the time of the system
+	//Compare If it takes more than 3 minutes, the operation is not allowed Deletion and change are required within 3 minutes
 	
 	public static int showTime(String num) {
 		
-		PreparedStatement preSql;//预处语句
-		ResultSet rs;//存放结果的
+		PreparedStatement preSql;
+		ResultSet rs;//Storage of the results
 		
 		String sqlStr="select *   from instock where id=?";
 	
@@ -32,7 +32,7 @@ public class StaffStockDao {
 			preSql=con.prepareStatement(sqlStr);
 			preSql.setString(1,num);
 			String t = null;
-			rs=preSql.executeQuery();//将结果放到rs里面
+			rs=preSql.executeQuery();//Put the results in rs
 			while(rs.next()) {
 				a++;
 				t = rs.getString("intime");
@@ -41,7 +41,7 @@ public class StaffStockDao {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String ac = df.format(day);
 				Long between_dayInteger = between_days(t, df.format(day));
-				if(between_dayInteger>3) { //是否超过三分钟
+				if(between_dayInteger>3) { //Whether more than three minutes
 					return 0;
 				}else {
 					return 1;
@@ -57,8 +57,8 @@ public class StaffStockDao {
 	
 	public static int showTimeOut(String num) {
 		
-		PreparedStatement preSql;//预处语句
-		ResultSet rs;//存放结果的
+		PreparedStatement preSql;//Preprocessing Statement
+		ResultSet rs;//Storage of the results
 		
 		String sqlStr="select *   from outstock where id=?";
 	
@@ -67,7 +67,7 @@ public class StaffStockDao {
 			preSql=con.prepareStatement(sqlStr);
 			preSql.setString(1,num);
 			String t = null;
-			rs=preSql.executeQuery();//将结果放到rs里面
+			rs=preSql.executeQuery();//Put the results in rs
 			
 			while(rs.next()) {
 				a++;

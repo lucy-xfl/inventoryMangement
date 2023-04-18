@@ -24,15 +24,15 @@ import com.windows.Login;
 
 public class InStockPan extends JPanel {
 	
-	final int WIDTH=730;//设置顶层框架的宽度
-	final int HEIGHT=50;//设置顶层框架的高度
+	final int WIDTH=730;//Set the width of the top-level frame
+	final int HEIGHT=50;//Set the height of the top-level frame
 
 	
-	//表格的数据
-	Object columns[] ={"ID","Supplier","Name","Time","Num","Price","Total Num"};//标题信息
-	JTable tableL=null;//表格
-	JScrollPane jscrollpane;//滚动条
-	public static DefaultTableModel  model;//定义表格的控制权
+	//Data of the table
+	Object columns[] ={"ID","Supplier","Name","Time","Num","Price","Total Num"};//Title Information
+	JTable tableL=null;//Forms
+	JScrollPane jscrollpane;//Scroll bar
+	public static DefaultTableModel  model;//Defining the control of the form
 	
 	public static JTextField stockPricIn;
 	public static JTextField stockNumIn;
@@ -42,7 +42,6 @@ public class InStockPan extends JPanel {
 	
 	
 	public InStockPan(int x,int y,int width,int height) {
-		//第一个 w  h 是表示所在位置 第二个表示 //设置他的大小
 		this.setBounds(x, y, width, height);
 		init();
 		
@@ -52,42 +51,42 @@ public class InStockPan extends JPanel {
 	
 	
 	void init() {
-		//设置空布局
+		//Set empty layout
 		this.setLayout(null);
-		//产品入库信息：商品名称，商品入库时间，商品入库价格，商品入库数量，商品库存，商品供应商
+		//Product inbound information: product name, product inbound time, product inbound price, product inbound quantity, product inventory, product supplier
 		
 		
-		//需要三个盘子
+		//3JPanels
 		JPanel jpan1=new JPanel();
 		jpan1.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));//左对齐的意思
-		//设置盘子的大小和位置
+		//Set size of JPanels
 		jpan1.setBounds(0, 0, WIDTH-20, 70);
 		jpan1.setOpaque(false);
 		
 		this.add(jpan1);
 	
-		// 定义5个按钮 
+		// Define 4 buttons
 		JButton JB1=new JButton("Save");
 		jpan1.add(JB1);
 		
-		// 定义5个按钮 
+		// Define 4 buttons
 		JButton JB2=new JButton("Delete");
 		jpan1.add(JB2);
 		
-		// 定义5个按钮 
+		// Define 4 buttons
 		JButton JB3=new JButton("Change");
 		jpan1.add(JB3);
 		
-		// 定义5个按钮 
+		// Define 4 buttons
 		JButton JB4=new JButton("Find");
 		jpan1.add(JB4);
 		
 
 		
-		//添加  4个标签  3个文本框  1个下拉框  定义一个盘子二
+		//Add 5 labels 3 text boxes 1 drop down box Define a JPanel2
 		JPanel jpan2=new JPanel();
-		jpan2.setLayout(new FlowLayout(FlowLayout.LEFT,10,20));//左对齐的意思
-		//设置盘子的大小和位置
+		jpan2.setLayout(new FlowLayout(FlowLayout.LEFT,10,20));//left alignment
+		//Set location and size of jpan2
 		jpan2.setBounds(0, 60, WIDTH-20, 100);
 	
 		
@@ -96,7 +95,7 @@ public class InStockPan extends JPanel {
 
 		
 		
-		cmbSupName=new JComboBox();    //创建JComboBox
+		cmbSupName=new JComboBox();    //Create JComboBox
 		cmbSupName.addItem("--Supplier--");
 		jpan2.add(cmbSupName);
 		
@@ -110,7 +109,7 @@ public class InStockPan extends JPanel {
 		this.setBorder(BorderFactory.createTitledBorder(""));
 	
 		
-		cmbStockName=new JComboBox();    //创建JComboBox
+		cmbStockName=new JComboBox();    //Create JComboBox
 		cmbStockName.addItem("--Product--");
 		jpan2.add(cmbStockName);
 		
@@ -143,15 +142,15 @@ public class InStockPan extends JPanel {
 		table();
 		this.add(jscrollpane);
 		SupManDao.readSup(InStockPan.cmbSupName);
-		//放一个表格
+		//Put a table
 		//________________________________________________________________
-		//添加监听
+		//Adding a listener
 		JB1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//将数据获取  写入到数据库里面
+				//Get the data and write it to the database
 				//InStockDao.writeStock(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY)
 				if(cmbSupName.getSelectedIndex()==0) {
 					JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
@@ -193,7 +192,7 @@ public class InStockPan extends JPanel {
 			
 		});
 			//
-		//下拉框的监听
+		//Listening to drop-down boxes
 		cmbSupName.addItemListener(new ItemListener() {
 
 			@Override
@@ -205,27 +204,26 @@ public class InStockPan extends JPanel {
 			}
 			
 		});
-		
-		//查询查询所有吧
+
 		JB4.addActionListener(new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			//两种查法，查找全部 和查找单个 
+			//Two types of search methods, find all and find single
 			String num=stockNum.getText();
 			ResultSet rs ;
 			if(num.equals("")) {
-				//则查找全部
+				//Then find all
 				rs = InStockDao.findStockallData();
-				//传递一个存储数据的rs  和一个表格   还需要一个表格的 长度
+				//Pass a rs to store data and a table Also need a table length
 			int a=Tool.addDataTable(rs, model,7 );
 			if(a==0) {
 				JOptionPane.showMessageDialog(null, "No relative data", "Message",JOptionPane.WARNING_MESSAGE);
 			}
 				
 			}else {
-				//则查找单个
+				//then look for a single
 				
 				rs=InStockDao.findStockoneData(num);
 				ResultSet rs1 = InStockDao.findStockoneData(num);
@@ -236,7 +234,7 @@ public class InStockPan extends JPanel {
 					String nu=	rs1.getString("num");
 					String pr=	rs1.getString("pric");
 					
-					//遍历两个下拉框
+					//Iterate through the two drop-down boxes
 					
 			
 					
@@ -290,14 +288,14 @@ public class InStockPan extends JPanel {
 			
 		});
 		
-		//删除按钮 
+		//Delete Button
 		
 		JB2.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//直接输入  ID进行删除
+				//Enter ID directly to delete
 				String num=stockNum.getText();
 				if(num.equals("")) {
 					JOptionPane.showMessageDialog(null, "Please enter the deletion number", "Message",JOptionPane.WARNING_MESSAGE);
@@ -333,18 +331,18 @@ public class InStockPan extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String sup=null;//供应商
-				String sun=null;//子产品
-				String num=null;//数量
-				String pric=null;//价格
-				String ID=null;//价格
+				String sup=null;//supplier
+				String sun=null;//sub-project
+				String num=null;//amount
+				String pric=null;//price
+				String ID=null;//ID
 				
 				if(stockNum.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Please enter the ID number", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					
 					if(cmbSupName.getSelectedIndex()==0) {
-						//则说明没有选择
+						//means no selection
 						
 						JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
 						
@@ -356,13 +354,13 @@ public class InStockPan extends JPanel {
 						JOptionPane.showMessageDialog(null, "Product price cannot be empty", "Message",JOptionPane.WARNING_MESSAGE);
 					}else {
 						
-						//写入 
+						//write in
 						sup=(String) cmbSupName.getSelectedItem();
 						sun=(String) cmbStockName.getSelectedItem();
 						num=stockNumIn.getText();
 						pric=stockPricIn.getText();
 						ID=stockNum.getText();
-						//将四个值传入数据库
+						//Passing 5 values into the database
 						int a=InStockDao.changeStockData(sup, sun, num, pric, ID);
 						
 						

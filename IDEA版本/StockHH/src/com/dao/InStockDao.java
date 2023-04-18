@@ -15,9 +15,9 @@ public class InStockDao {
 	
 	
 	public static int  writeStock(String sup,String sunname,String num1,String pri,String peo) {
-		PreparedStatement preSql;//预处语句
+		PreparedStatement preSql;//Preprocessing Statements
 		
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 
 		String sqlStr="insert into instock(supname,stockname,intime,num,pric,oper) values(?,?,now(),?,?,?)";
 		int num=0;
@@ -37,11 +37,11 @@ public class InStockDao {
 			return 3;
 		}
 	}
-	//查找单个和查找全部  查找全部 是需要输
+	//Find Single and Find All Find what is required to enter
 	public static ResultSet  findStockoneData(String num) {
-		PreparedStatement preSql;//预处语句
+		PreparedStatement preSql;//Preprocessing Statements
 		
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 		String  data[]=new String [6];
 		String sqlStr="select instock.id,instock.supname,instock.stockname,instock.intime,instock.num,instock.pric,product.stock from instock,product where product.supname=instock.supname and product.`name`=instock.stockname and id=?";
 		ResultSet rs=null ;
@@ -58,10 +58,10 @@ public class InStockDao {
 			return  rs;
 		}
 	}
-	//查找所有的代码
+	//Find all codes
 	public static ResultSet  findStockallData() {
-		PreparedStatement preSql;//预处语句
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		PreparedStatement preSql;//Preprocessing Statements
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 		String  data[]=new String [6];
 		String sqlStr="select instock.id,instock.supname,instock.stockname,instock.intime,instock.num,instock.pric,product.stock from instock,product where product.supname=instock.supname and product.`name`=instock.stockname";
 		ResultSet rs=null ;
@@ -76,9 +76,9 @@ public class InStockDao {
 		}
 	}
 	public static int dellStockData(String id) {
-		PreparedStatement preSql;//预处语句
+		PreparedStatement preSql;//Preprocessing Statements
 		
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 
 		String sqlStr="delete from instock where id=?";
 		int num=0;
@@ -99,9 +99,9 @@ public class InStockDao {
 			
 		}
 	}
-	//更改商品记录
+	//Change product records
 	public static int changeStockData(String sup,String sun,String num,String pric,String id) {
-	PreparedStatement preSql;//预处语句
+	PreparedStatement preSql;//Preprocessing Statements
 		
 		
 
