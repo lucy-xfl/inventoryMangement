@@ -10,9 +10,9 @@ public class AddAcount {
 	static Connection con=DBUtil.conn;
 	
 	public static int  writeAccount(String account,String password,String name,String address,String emain) {
-		PreparedStatement preSql;//预处语句
+		PreparedStatement preSql;//Preprocessing Statements
 		
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 
 		String sqlStr="insert into users(account,`password`,sname,saddress,semail) values(?,?,?,?,?)";
 		int num=0;

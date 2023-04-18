@@ -10,21 +10,21 @@ import java.sql.Statement;
 import com.until.DBUtil;
 
 public class LoginDao {
-	 //处理登录事件的类
-	static Connection con=DBUtil.conn;//将连接的con传过来
-	//登录状态  成功true 失败则fails
+	 //Classes that handle login events
+	static Connection con=DBUtil.conn;//Pass the connected con over
+	//Login Status Success true Failure faults
 	public static boolean  loginStar(String account ,String password ) {
-		//第一个账号，第二个是密码  预处理 
+		//The first account number, the second is the password Preprocessing
 	
-		PreparedStatement preSql;//预处语句
-		ResultSet rs;//存放结果的
+		PreparedStatement preSql;//Preprocessing statement
+		ResultSet rs;//Storage of the results
 		String sqlStr="select * from users where account=? and password =?";
 		
 		try {
 			preSql=con.prepareStatement(sqlStr);
 			preSql.setString(1, account);
 			preSql.setString(2, password);
-			rs=preSql.executeQuery();//将结果放到rs里面
+			rs=preSql.executeQuery();//Put the results in rs
 			if(rs.next()) {
 				return true;
 			}else {
@@ -36,26 +36,26 @@ public class LoginDao {
 	}
 	
 //______________________________________
-	//检验账号权限
+	//Check account permissions
 	public static  int   loginPow(String account ,String password ) {
-		//第一个账号，第二个是密码  预处理 
+		//The first account number, the second is the password Preprocessing
 	
-		PreparedStatement preSql;//预处语句
-		ResultSet rs;//存放结果的
+		PreparedStatement preSql;//Preprocessing Statement
+		ResultSet rs;//Storage of the results
 		String sqlStr="select * from users where account=? and password =?";
 		
 		try {
 			preSql=con.prepareStatement(sqlStr);
 			preSql.setString(1, account);
 			preSql.setString(2, password);
-			rs=preSql.executeQuery();//将结果放到rs里面
+			rs=preSql.executeQuery();//Put the results in rs
 			if(rs.next()) {
 				if(rs.getString("pow").equals("2")) {
-					//管理员用户
+					//Manager
 					return 2;
 					
 				}else {
-					//就是普通用户
+					//Staff
 					return 1;
 				}
 	

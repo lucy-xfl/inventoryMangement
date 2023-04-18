@@ -24,15 +24,15 @@ import com.windows.Login;
 
 public class OutStockPan extends JPanel {
 	
-	final int WIDTH=730;//ÉèÖÃ¶¥²ã¿ò¼ÜµÄ¿í¶È
-	final int HEIGHT=50;//ÉèÖÃ¶¥²ã¿ò¼ÜµÄ¸ß¶È
+	final int WIDTH=730;
+	final int HEIGHT=50;
 
 	
-	//±í¸ñµÄÊı¾İ
-	Object columns[] ={"ID","Supplier","Stock Name","Out-time","Num","Price","Total-num","Account"};//±êÌâĞÅÏ¢
-	JTable tableL=null;//±í¸ñ
-	JScrollPane jscrollpane;//¹ö¶¯Ìõ
-	public static DefaultTableModel  model;//¶¨Òå±í¸ñµÄ¿ØÖÆÈ¨
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Object columns[] ={"ID","Supplier","Stock Name","Out-time","Num","Price","Total-num","Account"};//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	JTable tableL=null;
+	JScrollPane jscrollpane;
+	public static DefaultTableModel  model;
 	
 	public static JTextField stockPricOut;
 	public static JTextField stockNumOut;
@@ -42,49 +42,49 @@ public class OutStockPan extends JPanel {
 	
 	
 	public OutStockPan(int x,int y,int width,int height) {
-		//µÚÒ»¸ö w  h ÊÇ±íÊ¾ËùÔÚÎ»ÖÃ µÚ¶ş¸ö±íÊ¾ //ÉèÖÃËûµÄ´óĞ¡
+
 		this.setBounds(x, y, width, height);
 		init();
 	}
 	
 	
 	void init() {
-		//ÉèÖÃ¿Õ²¼¾Ö
+
 		this.setLayout(null);
-		//²úÆ·Èë¿âĞÅÏ¢£ºÉÌÆ·Ãû³Æ£¬ÉÌÆ·Èë¿âÊ±¼ä£¬ÉÌÆ·Èë¿â¼Û¸ñ£¬ÉÌÆ·Èë¿âÊıÁ¿£¬ÉÌÆ·¿â´æ£¬ÉÌÆ·¹©Ó¦ÉÌ
+
 	
 		
-		//ĞèÒªÈı¸öÅÌ×Ó
+
 		JPanel jpan1=new JPanel();
-		jpan1.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));//×ó¶ÔÆëµÄÒâË¼
-		//ÉèÖÃÅÌ×ÓµÄ´óĞ¡ºÍÎ»ÖÃ
+		jpan1.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
+
 		jpan1.setBounds(0, 0, WIDTH-20, 50);
 
 		
 		this.add(jpan1);
 	
-		// ¶¨Òå5¸ö°´Å¥ 
+
 		JButton JB1=new JButton("Depot");
 		jpan1.add(JB1);
 		
-		// ¶¨Òå5¸ö°´Å¥ 
+
 		JButton JB2=new JButton("Delete");
 		jpan1.add(JB2);
 		
-		// ¶¨Òå5¸ö°´Å¥ 
+
 		JButton JB3=new JButton("Change");
 		jpan1.add(JB3);
 		
-		// ¶¨Òå5¸ö°´Å¥ 
+
 		JButton JB4=new JButton("Find");
 		jpan1.add(JB4);
 		
 		
 		
-		//Ìí¼Ó  4¸ö±êÇ©  3¸öÎÄ±¾¿ò  1¸öÏÂÀ­¿ò  ¶¨ÒåÒ»¸öÅÌ×Ó¶ş
+
 		JPanel jpan2=new JPanel();
-		jpan2.setLayout(new FlowLayout(FlowLayout.LEFT,12,15));//×ó¶ÔÆëµÄÒâË¼
-		//ÉèÖÃÅÌ×ÓµÄ´óĞ¡ºÍÎ»ÖÃ
+		jpan2.setLayout(new FlowLayout(FlowLayout.LEFT,12,15));
+
 		jpan2.setBounds(0, 60, WIDTH-20, 100);
 	
 		
@@ -94,7 +94,7 @@ public class OutStockPan extends JPanel {
 		
 		
 	
-		cmbSupName=new JComboBox();    //´´½¨JComboBox
+		cmbSupName=new JComboBox();
 		cmbSupName.addItem("--Supplier--");
 		jpan2.add(cmbSupName);
 		
@@ -103,8 +103,8 @@ public class OutStockPan extends JPanel {
 		jpan2.add(JL2);
 		
 		
-		cmbStockName=new JComboBox();    //´´½¨JComboBox
-		cmbStockName.addItem("--Stock Name--");
+		cmbStockName=new JComboBox();
+		//cmbStockName.addItem("--Stock Name--");
 		jpan2.add(cmbStockName);
 		
 		
@@ -123,7 +123,7 @@ public class OutStockPan extends JPanel {
 		stockPricOut=new JTextField(6);
 		jpan2.add(stockPricOut);
 		
-		//¹ºÂòÈË
+
 		JLabel JL5=new JLabel("Customer");
 		jpan2.add(JL5);
 		
@@ -151,9 +151,7 @@ public class OutStockPan extends JPanel {
 		table();
 		this.add(jscrollpane);
 		
-		//·ÅÒ»¸ö±í¸ñ
-		//ÏÂÀ­¼àÌı
-		//ÏÂÀ­¿òµÄ¼àÌı
+
 		cmbSupName.addItemListener(new ItemListener() {
 
 			@Override
@@ -164,13 +162,13 @@ public class OutStockPan extends JPanel {
 			}
 			
 		});
-		//Ôö¼ÓÊı¾İµÄ¼àÌı
+
 		JB1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//½«Êı¾İ»ñÈ¡  Ğ´Èëµ½Êı¾İ¿âÀïÃæ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½İ»ï¿½È¡  Ğ´ï¿½ëµ½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½
 				//InStockDao.writeStock(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY)
 				if(cmbSupName.getSelectedIndex()==0) {
 					JOptionPane.showMessageDialog(null, "Please select a supplier", "message",JOptionPane.WARNING_MESSAGE);
@@ -222,28 +220,26 @@ public class OutStockPan extends JPanel {
 			}
 			
 		});
-		//²éÑ¯¹¦ÄÜµÄÊµÏÖ
-		
-		//²éÑ¯²éÑ¯ËùÓĞ°É
+
 		JB4.addActionListener(new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			//Á½ÖÖ²é·¨£¬²éÕÒÈ«²¿ ºÍ²éÕÒµ¥¸ö 
+
 			String num=stockNum.getText();
 			ResultSet rs ;
 			if(num.equals("")) {
-				//Ôò²éÕÒÈ«²¿
+
 				rs = OutStockDao.findStockallData();
-				//´«µİÒ»¸ö´æ´¢Êı¾İµÄrs  ºÍÒ»¸ö±í¸ñ   »¹ĞèÒªÒ»¸ö±í¸ñµÄ ³¤¶È
+
 			int a=Tool.addDataTable(rs, model,8 );
 			if(a==0) {
 				JOptionPane.showMessageDialog(null, "No relevant data available", "Message",JOptionPane.WARNING_MESSAGE);
 			}
 				
 			}else {
-				//Ôò²éÕÒµ¥¸ö
+
 				
 				rs=OutStockDao.findStockoneData(num);
 				ResultSet rs1 = OutStockDao.findStockoneData(num);
@@ -255,8 +251,7 @@ public class OutStockPan extends JPanel {
 					String pr=	rs1.getString("pric");
 					String user=rs1.getString("user");
 					
-					//±éÀúÁ½¸öÏÂÀ­¿ò
-					
+
 			
 					
 					for(int i=0;i<cmbSupName.getItemCount();i++) {
@@ -309,7 +304,7 @@ public class OutStockPan extends JPanel {
 		}
 			
 		});
-		//É¾³ı³ö¿â¼ÇÂ¼
+
 		
 		
 		JB2.addActionListener(new ActionListener() {
@@ -317,7 +312,6 @@ public class OutStockPan extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//Ö±½ÓÊäÈë  ID½øĞĞÉ¾³ı
 				String num=stockNum.getText();
 				if(num.equals("")) {
 					JOptionPane.showMessageDialog(null, "Please enter the deletion ID", "Message",JOptionPane.WARNING_MESSAGE);
@@ -342,25 +336,24 @@ public class OutStockPan extends JPanel {
 			
 		});
 		
-		//¸ü¸Ä
-		//¸ü¸ÄÊı¾İ
+
 		JB3.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String sup=null;//¹©Ó¦ÉÌ
-				String sun=null;//×Ó²úÆ·
-				String num=null;//ÊıÁ¿
-				String pric=null;//¼Û¸ñ
-				String ID=null;//¼Û¸ñ
+				String sup=null;
+				String sun=null;
+				String num=null;
+				String pric=null;
+				String ID=null;
 				String user=null;
 				if(stockNum.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Please enter the ID", "Message",JOptionPane.WARNING_MESSAGE);
 				}else {
 					
 					if(cmbSupName.getSelectedIndex()==0) {
-						//ÔòËµÃ÷Ã»ÓĞÑ¡Ôñ
+
 						
 						JOptionPane.showMessageDialog(null, "Please select a supplier", "Message",JOptionPane.WARNING_MESSAGE);
 						
@@ -376,14 +369,14 @@ public class OutStockPan extends JPanel {
 						
 					}else{
 						
-						//Ğ´Èë 
+
 						sup=(String) cmbSupName.getSelectedItem();
 						sun=(String) cmbStockName.getSelectedItem();
 						num=stockNumOut.getText();
 						pric=stockPricOut.getText();
 						ID=stockNum.getText();
 						user=stockUser.getText();
-						//½«ËÄ¸öÖµ´«ÈëÊı¾İ¿â
+
 						int a=OutStockDao.changeStockData(sup, sun, num, pric,user, ID);
 						if(a==0) {
 							JOptionPane.showMessageDialog(null, "No change in data", "Message",JOptionPane.WARNING_MESSAGE);
@@ -429,20 +422,20 @@ public class OutStockPan extends JPanel {
 	
 	void table() {
 		
-		tableL=getTable();//³õÊ¼»¯±í¸ñ
-		jscrollpane=new JScrollPane(tableL);//Ìí¼ÓÒ»¸öä¯ÀÀ´°¸ñ
-		tableL.setPreferredSize(new Dimension(WIDTH-30,10000));//¸ø±í¸ñÉèÖÃ´óĞ¡
-		jscrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);//½«»¬¶¯×é¼şÏÔÊ¾ÔÚ´°¿ÚÖĞ
+		tableL=getTable();
+		jscrollpane=new JScrollPane(tableL);
+		tableL.setPreferredSize(new Dimension(WIDTH-30,10000));
+		jscrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		jscrollpane.setBounds(0, 170, WIDTH-20, 360);
 		
 	}
 	
 	JTable getTable() {
-		//Èç¹û±í¸ñÎª¿ÕÔò´´½¨±í¸ñ
+
 		if(tableL==null) {
-			tableL=new JTable();//´´½¨ 
+			tableL=new JTable();
 			model=new DefaultTableModel() {
-				//Ìí¼ÓÒ»Ğ©¶Ô±í¸ñµÄ¿ØÖÆ ÉèÖÃ±í¸ñ ²»¿É¶¯  ²»¿É±à¼­
+				//ï¿½ï¿½ï¿½Ò»Ğ©ï¿½Ô±ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ ï¿½ï¿½ï¿½É¶ï¿½  ï¿½ï¿½ï¿½É±à¼­
 				public boolean isCellEditable(int row, int column)
 				{
 				return false;
@@ -452,12 +445,12 @@ public class OutStockPan extends JPanel {
 			
 		
 		model.setColumnIdentifiers(columns);
-		tableL.setModel(model);//ÉèÖÃÎª±í¸ñµÄÄ£Ê½
+		tableL.setModel(model);//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ä£Ê½
 		
-		tableL.getTableHeader().setReorderingAllowed(false);//ÈÃ±í¸ñ²»¿ÉÍÏ¶¯
-		tableL.getTableHeader().setResizingAllowed(false);//ÈÃ±í¸ñ²»¿ÉÍÏ¶¯
+		tableL.getTableHeader().setReorderingAllowed(false);
+		tableL.getTableHeader().setResizingAllowed(false);
 			
-		//ÁĞ¿í ºÍĞĞÊı  ²¢ÇÒÈÃ±í¸ñ²»¿É±à¼­
+
 			
 			
 		}

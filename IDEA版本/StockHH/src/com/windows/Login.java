@@ -3,8 +3,6 @@ package com.windows;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -190,13 +188,13 @@ public class Login {
 					if(pow==2) {
 						//And the Manager
 						jframe.dispose();
-						MangePeopleWindows a=new MangePeopleWindows();
+						ManagerWindow a=new ManagerWindow();
 						SupManDao.readSup(InStockPan.cmbSupName);
 						
 					}else if(pow==1) {
 						//And the Staff
 						jframe.dispose();
-						StaiffWindows a=new StaiffWindows();
+						StaffWindow a=new StaffWindow();
 					}else {
 						//Report an error
 						JOptionPane.showMessageDialog(null, "System Error", "Login Message",JOptionPane.WARNING_MESSAGE);

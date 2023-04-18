@@ -13,8 +13,8 @@ import com.tool.Tool;
 public class AddStaffAccout {
 
 	
-	final int WIDTH=230;//设置顶层框架的宽度
-	final int HEIGHT=300;//设置顶层框架的高度
+	final int WIDTH=230;//Set the width of the top-level frame
+	final int HEIGHT=300;//Set the height of the top-level frame
 	
 	JFrame jframe=new JFrame();
 	
@@ -22,10 +22,10 @@ public class AddStaffAccout {
 	public AddStaffAccout(){
 		
 		init();
-		jframe.setVisible(true); //设置当前窗口是否可显示 
-		jframe.setResizable(false);//窗口的大小不可边
-		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//设置默认关闭方式
-		jframe.validate();//让组件生效
+		jframe.setVisible(true); //Set whether the current window can be displayed
+		jframe.setResizable(false);//The size of the window cannot be changed
+		jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Set the default closing method
+		jframe.validate();//Making components work
 		jframe.setIconImage(new ImageIcon("src/img/icons8-warehouse-100.png").getImage());
 	}
 	
@@ -35,54 +35,54 @@ public class AddStaffAccout {
 		jframe.setTitle("c");
 		jframe.setLayout(new FlowLayout(FlowLayout.CENTER));
 		Tool.setWindowPosCenter(WIDTH, HEIGHT, jframe);
-		//5个标签  4个文本框
-		JLabel JL=new JLabel("Add Staff account");//大标题
+		//5 labels 4 text boxes
+		JLabel JL=new JLabel("Add Staff account");//Big Title
 		jframe.add(JL);
 		Style style=new Style();
 		JL.setFont(style.title);
 		
-		JLabel JL1=new JLabel("Account: ");//大标题
+		JLabel JL1=new JLabel("Account: ");//Big Title
 		jframe.add(JL1);
 		JTextField JT1=new JTextField(10);
 		jframe.add(JT1);
 		
-		JLabel JL5=new JLabel("Password:");//大标题
+		JLabel JL5=new JLabel("Password:");//Big Title
 		jframe.add(JL5);
 		JPasswordField JT5=new JPasswordField(10);
 		jframe.add(JT5);
 		
 		
-		JLabel JL6=new JLabel("Confirm: ");//大标题
+		JLabel JL6=new JLabel("Confirm: ");//Big Title
 		jframe.add(JL6);
 		JPasswordField JT6=new JPasswordField(10);
 		jframe.add(JT6);
 		
-		JLabel JL4=new JLabel("Email:  ");//大标题
+		JLabel JL4=new JLabel("Email:  ");//Big Title
 		jframe.add(JL4);
 		JTextField JT4=new JTextField(10);
 		jframe.add(JT4);
 		
 		
 		
-		JLabel JL2=new JLabel("Name:   ");//大标题
+		JLabel JL2=new JLabel("Name:   ");//Big Title
 		jframe.add(JL2);
 		JTextField JT2=new JTextField(10);
 		jframe.add(JT2);
 		
-		JLabel JL3=new JLabel("Address: ");//大标题
+		JLabel JL3=new JLabel("Address: ");//Big Title
 		jframe.add(JL3);
 		JTextField JT3=new JTextField(10);
 		jframe.add(JT3);
 		
 		
 	
-		//一个按钮
+		//One button
 		JButton JB=new JButton("Add Staff");
 		jframe.add(JB);
 		
 		JButton JB1=new JButton("Reset");
 		jframe.add(JB1);
-		//重置所有内容
+		//Reset all content
 		JB1.addActionListener(new ActionListener() {
 
 			@Override
@@ -101,8 +101,8 @@ public class AddStaffAccout {
 		});
 		
 		
-		//添加数据库
-		//重置所有内容
+		//Add Database
+		//Reset all content
 		JB.addActionListener(new ActionListener() {
 
 			@Override

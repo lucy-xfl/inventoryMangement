@@ -14,9 +14,9 @@ public class OutStockDao {
 	
 	
 	public static int  writeStock(String sup,String sunname,String num1,String pri,String user,String oper) {
-		PreparedStatement preSql;//预处语句
+		PreparedStatement preSql;//Preprocessing Statement
 		
-		//int num1 = Integer.parseInt(num);//将字符转换成整数
+		//int num1 = Integer.parseInt(num);//Convert characters to integers
 
 		String sqlStr="insert into outstock(supname,stockname,outtime,num,pric,user,oper) values(?,?,now(),?,?,?,?)";
 		int num=0;
@@ -46,11 +46,12 @@ public class OutStockDao {
 		
 	}
 	
-	//查找单个和查找全部  查找全部 是需要输
+	//Find Single and Find All
+	//Find what is required to enter
 		public static ResultSet  findStockoneData(String num) {
-			PreparedStatement preSql;//预处语句
+			PreparedStatement preSql;
 			
-			//int num1 = Integer.parseInt(num);//将字符转换成整数
+			//int num1 = Integer.parseInt(num);
 			String  data[]=new String [6];
 			String sqlStr="select outstock.id,outstock.supname,outstock.stockname,outstock.outtime,outstock.num,outstock.pric ,product.stock ,outstock.`user` from outstock ,product where product.supname=outstock.supname and product.`name`=outstock.stockname and id=?";
 			ResultSet rs=null ;
@@ -67,10 +68,10 @@ public class OutStockDao {
 				return  rs;
 			}
 		}
-		//查找所有的代码
+		//Find all data
 		public static ResultSet  findStockallData() {
-			PreparedStatement preSql;//预处语句
-			//int num1 = Integer.parseInt(num);//将字符转换成整数
+			PreparedStatement preSql;
+			//int num1 = Integer.parseInt(num);
 			
 			String sqlStr="select outstock.id,outstock.supname,outstock.stockname,outstock.outtime,outstock.num,outstock.pric,product.stock ,outstock.`user` from outstock ,product where product.supname=outstock.supname and product.`name`=outstock.stockname";
 			ResultSet rs=null ;
@@ -87,9 +88,9 @@ public class OutStockDao {
 		
 		
 		public static int dellStockData(String id) {
-			PreparedStatement preSql;//预处语句
+			PreparedStatement preSql;
 			
-			//int num1 = Integer.parseInt(num);//将字符转换成整数
+			//int num1 = Integer.parseInt(num);
 
 			String sqlStr="delete from outstock where id=?";
 			int num=0;
@@ -104,9 +105,9 @@ public class OutStockDao {
 			}
 		}
 		
-		//更改数据
+		//Change data
 		public static int changeStockData(String sup,String sun,String num,String pric,String usre,String id) {
-			PreparedStatement preSql;//预处语句
+			PreparedStatement preSql;//preprocessing statement
 				
 				
 

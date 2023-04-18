@@ -13,15 +13,15 @@ import com.tool.Tool;
 
 public class ShowInOutStock extends JPanel{
 	
-	final int WIDTH=730;//设置顶层框架的宽度
-	final int HEIGHT=50;//设置顶层框架的高度
+	final int WIDTH=730;//Set the width of the top-level frame
+	final int HEIGHT=50;//Set the height of the top-level frame
 	
 	
-	//表格的数据
+	//Data of the table
 	Object columns[] ={"ID","Supplier","Stoke name","InTime","Num","Price","Account"};//标题信息
-	JTable tableL=null;//表格
-	JScrollPane jscrollpane;//滚动条
-	public static DefaultTableModel  model;//定义表格的控制权
+	JTable tableL=null;//table
+	JScrollPane jscrollpane;//Scroll bar
+	public static DefaultTableModel  model;//Defining the control of the form
 	
 	
 	
@@ -31,7 +31,7 @@ public class ShowInOutStock extends JPanel{
 		
 	}
 	void init() {
-		//一个表格实现查询两个的事情  按账号查询
+		//One form for querying two things Query by account
 		
 		this.setLayout(new FlowLayout(FlowLayout.LEFT,25,30));
 		
@@ -43,7 +43,7 @@ public class ShowInOutStock extends JPanel{
 		JRadioButton jrb2=new JRadioButton("Find outbound information");
 		
 		ButtonGroup bg=new ButtonGroup();;	
-		bg.add(jrb1);			//必须要把单选框放入按钮组作用域中才能实现单选！！！！
+		bg.add(jrb1);			//You must put the radio box into the button group scope to achieve radio selection ！！！！
 		bg.add(jrb2);
 		this.add(jrb1);
 		this.add(jrb2);
@@ -58,20 +58,19 @@ public class ShowInOutStock extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//判断 文本框里面是否有东西，有则进行查找，没有则进行，则查找全部
-				//判断单选框是选择的那个
+				//Determine if there is something inside the text box, if there is, then do the search, if not, then do the search all
+				//Determine which radio box is the selected one
 				
 				if(JT1.getText().equals("")) {
-					//查找全部
-					if(jrb1.isSelected()) {//第一个选择了
-						//则查找第一个
+					//Find All
+					if(jrb1.isSelected()) {//The first one selected
+						//then look for the first
 						String sqlStr="select id,supname,stockname,intime,num,pric,oper from instock";
 						ResultSet rs = Tool.showData(sqlStr, null);
 						Tool.addDataTable(rs, model, 7);
 						
 					}else {
-						//查找第二个
-						//则查找第一个
+						//then look for the second
 						String sqlStr="select id,supname,stockname,outtime,num,pric,oper from outstock";
 						ResultSet rs = Tool.showData(sqlStr, null);
 						Tool.addDataTable(rs, model, 7);
@@ -79,8 +78,8 @@ public class ShowInOutStock extends JPanel{
 					}
 				}else {
 					
-					if(jrb1.isSelected()) {//第一个选择了
-						//则查找第一个
+					if(jrb1.isSelected()) {//The first one selected
+						//then look for the first
 						String  data[]=new String [1];
 						data[0]=JT1.getText();
 						String sqlStr="select id,supname,stockname,intime,num,pric,oper from instock where id=?";
@@ -88,8 +87,8 @@ public class ShowInOutStock extends JPanel{
 						Tool.addDataTable(rs, model, 7);
 						
 					}else {
-						//查找第二个
-						//则查找第一个
+						//Find the second
+						//then look for the first
 						String  data[]=new String [1];
 						data[0]=JT1.getText();
 						String sqlStr="select id,supname,stockname,outtime,num,pric,oper from outstock where id=?";
@@ -110,21 +109,21 @@ public class ShowInOutStock extends JPanel{
 	}
 	void table() {
 		
-		tableL=getTable();//初始化表格
-		jscrollpane=new JScrollPane(tableL);//添加一个浏览窗格
-		tableL.setPreferredSize(new Dimension(WIDTH-40,10000));//给表格设置大小
-		jscrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);//将滑动组件显示在窗口中
-		jscrollpane.setPreferredSize(new Dimension(WIDTH-40,400));//给表格设置大小
+		tableL=getTable();//Initialization Form
+		jscrollpane=new JScrollPane(tableL);//Add a browse pane
+		tableL.setPreferredSize(new Dimension(WIDTH-40,10000));//Setting the size of a table
+		jscrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);//Display sliding components in the window
+		jscrollpane.setPreferredSize(new Dimension(WIDTH-40,400));//Setting the size of a table
 		this.add(jscrollpane);
 		
 	}
 	
 	JTable getTable() {
-		//如果表格为空则创建表格
+		//Create a table if it is empty
 		if(tableL==null) {
-			tableL=new JTable();//创建 
+			tableL=new JTable();//create
 			model=new DefaultTableModel() {
-				//添加一些对表格的控制 设置表格 不可动  不可编辑
+				//Add some control over the table Set the table to be immovable and non-editable
 				public boolean isCellEditable(int row, int column)
 				{
 				return false;
@@ -134,12 +133,11 @@ public class ShowInOutStock extends JPanel{
 			
 		
 		model.setColumnIdentifiers(columns);
-		tableL.setModel(model);//设置为表格的模式
+		tableL.setModel(model);//Set to the mode of the table
 		
-		tableL.getTableHeader().setReorderingAllowed(false);//让表格不可拖动
-		tableL.getTableHeader().setResizingAllowed(false);//让表格不可拖动
-			
-		//列宽 和行数  并且让表格不可编辑
+		tableL.getTableHeader().setReorderingAllowed(false);//Make the table non-draggable
+		tableL.getTableHeader().setResizingAllowed(false);
+
 			
 			
 		}
